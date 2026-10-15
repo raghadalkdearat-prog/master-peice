@@ -1,0 +1,384 @@
+
+<!DOCTYPE html>
+
+<html dir="rtl" lang="ar">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="#163A5F" name="theme-color"/>
+<title>معاملاتي | وكيل</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&amp;family=Inter:wght@500;600;700amp;display=swap" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"/>
+<link href="my-requests.css" rel="stylesheet"/>
+ <link rel="stylesheet" href="../shared/shared.css">
+<link rel="stylesheet" href="../../shared/flow.css">
+<script src="../../shared/account-schema.js" defer></script>
+<script src="../../shared/service-catalog.js" defer></script>
+<script src="../../shared/wakeel-data.js" defer></script>
+<script src="../../shared/payment-provider.js" defer></script>
+<script src="../../shared/flow-ui.js" defer></script>
+</head>
+<body>
+  <div id="shared-navbar" class="landing-chrome"></div>
+<!-- ========== SVG ICONS ========== -->
+<svg aria-hidden="true" class="svg-sprite" xmlns="http://www.w3.org/2000/svg">
+<symbol id="i-user" viewbox="0 0 24 24"><circle cx="12" cy="8" r="4"></circle><path d="M4 21a8 8 0 0 1 16 0"></path></symbol>
+<symbol id="i-logout" viewbox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"></path></symbol>
+<symbol id="i-grid" viewbox="0 0 24 24"><rect height="7" rx="1.5" width="7" x="3" y="3"></rect><rect height="7" rx="1.5" width="7" x="14" y="3"></rect><rect height="7" rx="1.5" width="7" x="3" y="14"></rect><rect height="7" rx="1.5" width="7" x="14" y="14"></rect></symbol>
+<symbol id="i-file" viewbox="0 0 24 24"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9Z"></path><path d="M13 2v7h7M8 13h8M8 17h6"></path></symbol>
+<symbol id="i-plus" viewbox="0 0 24 24"><path d="M12 5v14M5 12h14"></path></symbol>
+<symbol id="i-wallet" viewbox="0 0 24 24"><rect height="16" rx="3" width="20" x="2" y="5"></rect><path d="M2 9h20M6 5V3h13"></path></symbol>
+<symbol id="i-bell" viewbox="0 0 24 24"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"></path></symbol>
+<symbol id="i-help" viewbox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><path d="M9.6 9a2.5 2.5 0 1 1 4.6 1.5c-.5.7-2.2 1.3-2.2 3.2M12 17.5h.01"></path></symbol>
+<symbol id="i-shield" viewbox="0 0 24 24"><path d="m12 2 9 4v6c0 5-4 8-9 10-5-2-9-5-9-10V6l9-4Z"></path><path d="m8 12 3 3 5-5"></path></symbol>
+<symbol id="i-search" viewbox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"></circle><path d="m16 16 5 5"></path></symbol>
+<symbol id="i-filter" viewbox="0 0 24 24"><path d="M4 7h16M7 12h10M10 17h4"></path></symbol>
+<symbol id="i-chevron" viewbox="0 0 24 24"><path d="m9 18 6-6-6-6"></path></symbol>
+<symbol id="i-clock" viewbox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l4 2"></path></symbol>
+<symbol id="i-check" viewbox="0 0 24 24"><path d="m4 12 5 5L20 6"></path></symbol>
+<symbol id="i-message" viewbox="0 0 24 24"><path d="M20 11a8 8 0 0 1-8 8H5l1.8-4A8 8 0 1 1 20 11Z"></path></symbol>
+<symbol id="i-arrow" viewbox="0 0 24 24"><path d="M19 12H5m7-7-7 7 7 7"></path></symbol>
+<symbol id="i-menu" viewbox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"></path></symbol>
+<symbol id="i-inbox" viewbox="0 0 24 24"><path d="M4 4h16l2 12v4H2v-4L4 4Z"></path><path d="M2 15h6l2 3h4l2-3h6"></path></symbol>
+</svg>
+
+<!-- ======================================
+       CLIENT LAYOUT
+  ======================================= -->
+<div class="app-shell">
+<!-- SIDEBAR -->
+<aside aria-label="القائمة الجانبية" class="sidebar">
+<p class="nav-caption">مساحة العميل</p>
+<nav class="side-nav">
+<a class="nav-item" href="../master-client-dash/client-dash.html">
+<svg><use href="#i-grid"></use></svg>
+          لوحة التحكم
+        </a>
+<a aria-current="page" class="nav-item current" href="my-requests.html">
+<svg><use href="#i-file"></use></svg>
+          معاملاتي
+          <span class="nav-pill">8</span>
+</a>
+<a class="nav-item" href="../master-creat-request/creat-request.html">
+<svg><use href="#i-plus"></use></svg>
+          إنشاء معاملة
+        </a>
+<a class="nav-item" href="../master-payments/payments.html">
+<svg><use href="#i-wallet"></use></svg>
+          المدفوعات
+        </a>
+<a class="nav-item" href="../master-notifications/notifications.html">
+<svg><use href="#i-bell"></use></svg>
+          الإشعارات
+        </a>
+</nav>
+<p class="nav-caption second-caption">الحساب والمساعدة</p>
+<nav class="side-nav">
+<a class="nav-item" href="../master-profile-settings/profile.html">
+<svg><use href="#i-user"></use></svg>
+          الملف الشخصي
+        </a>
+<a class="nav-item" href="../master-Support-Help/support.html">
+<svg><use href="#i-help"></use></svg>
+          المساعدة والدعم
+        </a>
+</nav>
+<div class="sidebar-bottom">
+<div class="support-widget">
+<span class="support-icon">
+<svg><use href="#i-shield"></use></svg>
+</span>
+<strong>نحن هنا لمساعدتك</strong>
+<p>تحتاج مساعدة بخصوص إحدى معاملاتك؟</p>
+<a href="../master-Support-Help/support.html">تواصل معنا ←</a>
+</div>
+<a class="sidebar-logout" href="../../master-login/login.html">
+<svg><use href="#i-logout"></use></svg>
+          تسجيل الخروج
+        </a>
+</div>
+</aside>
+<!-- ======================================
+         MY REQUESTS CONTENT
+    ======================================= -->
+<main class="main-content">
+<!-- Page Heading -->
+<div class="page-heading">
+<div>
+<div class="breadcrumb">
+<a href="../master-client-dash/client-dash.html">لوحة التحكم</a>
+<svg><use href="#i-chevron"></use></svg>
+<span>معاملاتي</span>
+</div>
+<h1>معاملاتي</h1>
+<p>تابع التنفيذ والأرشيف والمسودات؛ العروض والدفع الأولي في المعاملات المطروحة.</p>
+</div>
+<a class="create-btn" href="../master-creat-request/creat-request.html">
+<svg><use href="#i-plus"></use></svg>
+          إنشاء معاملة جديدة
+        </a>
+</div>
+<!-- ========== Statistics ========== -->
+<section aria-label="إحصائيات المعاملات" class="stats-grid">
+<article class="stat-card">
+<span class="stat-icon stat-blue">
+<svg><use href="#i-file"></use></svg>
+</span>
+<span class="stat-label">إجمالي المعاملات</span>
+<strong class="stat-value">08</strong>
+<small>جميع طلباتك</small>
+</article>
+<article class="stat-card">
+<span class="stat-icon stat-violet">
+<svg><use href="#i-clock"></use></svg>
+</span>
+<span class="stat-label">قيد التنفيذ</span>
+<strong class="stat-value">02</strong>
+<small>تتم متابعتها الآن</small>
+</article>
+<article class="stat-card">
+<span class="stat-icon stat-teal">
+<svg><use href="#i-check"></use></svg>
+</span>
+<span class="stat-label">المكتملة</span>
+<strong class="stat-value">05</strong>
+<small>تم إنجازها</small>
+</article>
+<article class="stat-card">
+<span class="stat-icon stat-orange">
+<svg><use href="#i-message"></use></svg>
+</span>
+<span class="stat-label">المسودات</span>
+<strong class="stat-value">01</strong>
+<small>طلبات يمكنك استكمالها</small>
+</article>
+</section>
+<!-- ========== Requests Panel ========== -->
+<section class="requests-panel">
+<div class="panel-heading">
+<div>
+<h2>جميع المعاملات</h2>
+<p>استعرض طلباتك وابحث عن المعاملة المطلوبة.</p>
+</div>
+<span class="total-count" id="resultCount">8 معاملات</span>
+</div>
+<!-- Filters -->
+<div class="filters-bar">
+<div class="search-box">
+<svg><use href="#i-search"></use></svg>
+<input aria-label="البحث في المعاملات" id="requestSearch" placeholder="ابحث برقم المعاملة أو عنوانها..." type="search"/>
+</div>
+<div class="filter-select">
+<svg><use href="#i-filter"></use></svg>
+<select aria-label="تصفية حسب الحالة" id="statusFilter">
+<option value="all">جميع الحالات</option>
+<option value="draft">المسودات</option>
+<option value="active">قيد التنفيذ</option>
+<option value="completed">مكتملة</option>
+</select>
+</div>
+<select aria-label="تصفية حسب النوع" class="category-select" id="categoryFilter">
+<option value="all">جميع الخدمات</option>
+<option value="vehicle">معاملات المركبات</option>
+<option value="company">معاملات الشركات</option>
+<option value="property">العقارات والأراضي</option>
+<option value="documents">الوثائق والمستندات</option>
+<option value="licensing">التراخيص</option>
+</select>
+<button class="reset-btn" id="resetFilters" type="button">
+            إعادة ضبط
+          </button>
+</div>
+<!-- Tabs -->
+<div aria-label="تصفية سريعة" class="request-tabs" role="group">
+<button aria-pressed="true" class="tab active" data-status="all" type="button">الكل</button>
+<button aria-pressed="false" class="tab" data-status="active" type="button">قيد التنفيذ</button>
+<button aria-pressed="false" class="tab" data-status="draft" type="button">المسودات</button>
+<button aria-pressed="false" class="tab" data-status="completed" type="button">المكتملة</button>
+</div>
+<!-- Requests Table -->
+<div class="table-scroll">
+<table class="requests-table">
+<thead>
+<tr>
+<th>المعاملة</th>
+<th>نوع الخدمة</th>
+<th>التاريخ</th>
+<th>العروض</th>
+<th>الحالة</th>
+<th>الإجراء</th>
+</tr>
+</thead>
+<tbody id="requestsBody">
+<tr data-category="vehicle" data-status="active">
+<td>
+<div class="request-title">
+<span class="request-icon"><svg><use href="#i-file"></use></svg></span>
+<div>
+<strong>تجديد رخصة مركبة</strong>
+<small>#10231 · إربد</small>
+</div>
+</div>
+</td>
+<td>معاملات المركبات</td>
+<td>08/10/2026</td>
+<td><span class="offers-count">4 عروض</span></td>
+<td><span class="status status-active">قيد التنفيذ</span></td>
+<td><a class="details-link" href="../master-request-details/request-details.html?id=10231">عرض التفاصيل <svg><use href="#i-arrow"></use></svg></a></td>
+</tr>
+<tr data-category="property" data-status="offers">
+<td>
+<div class="request-title">
+<span class="request-icon"><svg><use href="#i-file"></use></svg></span>
+<div>
+<strong>متابعة معاملة أرض</strong>
+<small>#10232 · عمان</small>
+</div>
+</div>
+</td>
+<td>العقارات والأراضي</td>
+<td>07/10/2026</td>
+<td><span class="offers-count offers-new">3 عروض جديدة</span></td>
+<td><span class="status status-offers">بانتظار اختيار عرض</span></td>
+<td><a class="details-link" href="../master-request-details/request-details.html?id=10232#offers">عرض العروض <svg><use href="#i-arrow"></use></svg></a></td>
+</tr>
+<tr data-category="company" data-status="active">
+<td>
+<div class="request-title">
+<span class="request-icon"><svg><use href="#i-file"></use></svg></span>
+<div>
+<strong>تعديل سجل تجاري</strong>
+<small>#10233 · الزرقاء</small>
+</div>
+</div>
+</td>
+<td>معاملات الشركات</td>
+<td>05/10/2026</td>
+<td><span class="offers-count">2 عروض</span></td>
+<td><span class="status status-active">قيد التنفيذ</span></td>
+<td><a class="details-link" href="../master-request-details/request-details.html?id=10233">عرض التفاصيل <svg><use href="#i-arrow"></use></svg></a></td>
+</tr>
+<tr data-category="documents" data-status="completed">
+<td>
+<div class="request-title">
+<span class="request-icon"><svg><use href="#i-file"></use></svg></span>
+<div>
+<strong>استخراج وثائق شركة</strong>
+<small>#10230 · عمان</small>
+</div>
+</div>
+</td>
+<td>الوثائق والمستندات</td>
+<td>02/10/2026</td>
+<td><span class="offers-count">1 عرض</span></td>
+<td><span class="status status-completed">مكتملة</span></td>
+<td><a class="details-link" href="../master-request-details/request-details.html?id=10230">عرض التفاصيل <svg><use href="#i-arrow"></use></svg></a></td>
+</tr>
+<tr data-category="licensing" data-status="completed">
+<td>
+<div class="request-title">
+<span class="request-icon"><svg><use href="#i-file"></use></svg></span>
+<div>
+<strong>تجديد ترخيص مهني</strong>
+<small>#10225 · إربد</small>
+</div>
+</div>
+</td>
+<td>التراخيص</td>
+<td>24/09/2026</td>
+<td><span class="offers-count">2 عروض</span></td>
+<td><span class="status status-completed">مكتملة</span></td>
+<td><a class="details-link" href="../master-request-details/request-details.html?id=10225">عرض التفاصيل <svg><use href="#i-arrow"></use></svg></a></td>
+</tr>
+<tr data-category="vehicle" data-status="completed">
+<td>
+<div class="request-title">
+<span class="request-icon"><svg><use href="#i-file"></use></svg></span>
+<div>
+<strong>نقل ملكية مركبة</strong>
+<small>#10221 · عمان</small>
+</div>
+</div>
+</td>
+<td>معاملات المركبات</td>
+<td>18/09/2026</td>
+<td><span class="offers-count">3 عروض</span></td>
+<td><span class="status status-completed">مكتملة</span></td>
+<td><a class="details-link" href="../master-request-details/request-details.html?id=10221">عرض التفاصيل <svg><use href="#i-arrow"></use></svg></a></td>
+</tr>
+<tr data-category="documents" data-status="completed">
+<td>
+<div class="request-title">
+<span class="request-icon"><svg><use href="#i-file"></use></svg></span>
+<div>
+<strong>تصديق مستندات</strong>
+<small>#10218 · إربد</small>
+</div>
+</div>
+</td>
+<td>الوثائق والمستندات</td>
+<td>11/09/2026</td>
+<td><span class="offers-count">2 عروض</span></td>
+<td><span class="status status-completed">مكتملة</span></td>
+<td><a class="details-link" href="../master-request-details/request-details.html?id=10218">عرض التفاصيل <svg><use href="#i-arrow"></use></svg></a></td>
+</tr>
+<tr data-category="company" data-status="completed">
+<td>
+<div class="request-title">
+<span class="request-icon"><svg><use href="#i-file"></use></svg></span>
+<div>
+<strong>تحديث بيانات شركة</strong>
+<small>#10212 · عمان</small>
+</div>
+</div>
+</td>
+<td>معاملات الشركات</td>
+<td>04/09/2026</td>
+<td><span class="offers-count">2 عروض</span></td>
+<td><span class="status status-completed">مكتملة</span></td>
+<td><a class="details-link" href="../master-request-details/request-details.html?id=10212">عرض التفاصيل <svg><use href="#i-arrow"></use></svg></a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Empty State -->
+<div class="empty-state" hidden="" id="emptyState">
+<span class="empty-icon">
+<svg><use href="#i-inbox"></use></svg>
+</span>
+<h3>ما لقينا معاملات مطابقة</h3>
+<p>جرب تغيير كلمة البحث أو الفلاتر.</p>
+<button id="clearEmptyFilters" type="button">عرض جميع المعاملات</button>
+</div>
+<div class="table-footer">
+<span id="tableSummary">عرض 8 من أصل 8 معاملات</span>
+<span>البيانات الحالية للعرض التجريبي</span>
+</div>
+</section>
+<!-- Bottom Help -->
+<section class="bottom-help">
+<div>
+<span class="help-symbol">
+<svg><use href="#i-help"></use></svg>
+</span>
+<div>
+<h3>تحتاج مساعدة في متابعة معاملة؟</h3>
+<p>تواصل مع فريق الدعم أو راجع تفاصيل المعاملة.</p>
+</div>
+</div>
+<a href="../master-Support-Help/support.html">تواصل مع الدعم <svg><use href="#i-arrow"></use></svg></a>
+</section>
+</main>
+</div>
+
+<!-- ======================================
+       Demo Search and Filters
+       No Backend connection yet
+  ======================================= -->
+   <div id="shared-footer" class="landing-chrome"></div>
+  <script src="../shared/shared.js" defer></script>
+<script defer src="my-requests.js"></script>
+<script defer="True" src="../wakeel-client-links.js"></script></body>
+</html>
+

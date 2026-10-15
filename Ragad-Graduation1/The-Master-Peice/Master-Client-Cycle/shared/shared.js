@@ -1,0 +1,5 @@
+document.addEventListener("DOMContentLoaded",async()=>{
+async function load(id,file){const element=document.getElementById(id);if(!element)return;try{const response=await fetch("../shared/"+file);if(!response.ok)throw new Error("Shared component unavailable");element.innerHTML=await response.text();}catch{element.textContent="تعذر تحميل المكون المشترك. شغّل الصفحة باستخدام Live Server.";}}
+await Promise.all([load("shared-navbar","nav.html"),load("shared-footer","footer.html")]);document.dispatchEvent(new CustomEvent("wakeel:shared-ready"));
+const menu=document.querySelector("#shared-navbar .mobile-navigation");menu?.querySelectorAll("a").forEach(a=>a.addEventListener("click",()=>menu.open=false));document.addEventListener("keydown",e=>{if(e.key==="Escape"&&menu?.open){menu.open=false;menu.querySelector("summary").focus();}});
+});

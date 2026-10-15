@@ -1,0 +1,4 @@
+/* Deterministic local provider boundary. No network request, card charge or bill settlement. */
+(() => {"use strict";const attempts=new Map();
+window.WakeelPaymentProvider={mode:"demo",pay:request=>{if(attempts.has(request.attempt.id))return attempts.get(request.attempt.id).promise;let resolve;const promise=new Promise(r=>resolve=r);const timer=setTimeout(()=>resolve({result:request.behavior==="declined"?"declined":"success",attemptId:request.attempt.id}),350);attempts.set(request.attempt.id,{promise,timer,resolve});return promise;},cancel:attemptId=>{const a=attempts.get(attemptId);if(a){clearTimeout(a.timer);a.resolve({result:"cancelled",attemptId});}}};
+})();

@@ -1,0 +1,9 @@
+(() => {"use strict";const form=document.getElementById("registerForm"),password=document.getElementById("password"),confirmation=document.getElementById("confirmPassword"),message=document.getElementById("registrationMessage");
+document.querySelectorAll(".show-password").forEach(button=>button.addEventListener("click",()=>{const input=document.getElementById(button.dataset.for),reveal=input.type==="password";input.type=reveal?"text":"password";button.setAttribute("aria-pressed",String(reveal));button.setAttribute("aria-label",reveal?"إخفاء كلمة المرور":"إظهار كلمة المرور");}));
+function match(){confirmation.setCustomValidity(confirmation.value&&confirmation.value!==password.value?"كلمتا المرور غير متطابقتين.":"");}
+password.addEventListener("input",match);confirmation.addEventListener("input",match);
+form.addEventListener("submit",e=>{e.preventDefault();match();if(!form.reportValidity())return;const role=form.querySelector('input[name="accountType"]:checked').value,input={fullName:document.getElementById("fullName").value,email:document.getElementById("email").value,phone:document.getElementById("phone").value,city:document.getElementById("city").value,bio:""},result=WakeelData.saveProfile(role,input);
+if(!result.ok){message.textContent=result.error;return;}password.value="";confirmation.value="";message.textContent="تم حفظ بيانات حساب "+(role==="agent"?"الوكيل":"العميل")+" للتجربة المحلية. لم تُنشأ مصادقة فعلية ولم تُحفظ كلمة المرور.";
+let link=document.getElementById("localAccountLink");if(!link){link=document.createElement("a");link.id="localAccountLink";link.className="register-btn";message.after(link);}link.href=role==="agent"?"../Master-Agent-Cycle/master-agent-dash/dashboard.html":"../Master-Client-Cycle/master-client-dash/client-dash.html";link.textContent="متابعة إلى مساحة "+(role==="agent"?"الوكيل":"العميل");
+});
+})();

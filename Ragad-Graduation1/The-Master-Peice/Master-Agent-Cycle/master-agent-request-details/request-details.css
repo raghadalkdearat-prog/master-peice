@@ -1,0 +1,2 @@
+/* تفاصيل المعاملة: shared client visual language lives in agent-shell.css. */
+.agent-app .detail-meta{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.agent-app .detail-meta dd{margin:4px 0 0;font-weight:600}.agent-app .detail-meta dt{color:var(--sub);font-size:12px}@media(max-width:540px){.agent-app .detail-meta{grid-template-columns:1fr}}

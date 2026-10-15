@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#eaf3fc">
+  <meta name="description" content="سجّل الدخول إلى وكيل لتتابع معاملاتك بسهولة، وتقارن العروض وتختار مقدم الخدمة المناسب.">
+  <title>تسجيل الدخول | وكيل</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="stylesheet" href="login.css">
+<script src="../shared/account-schema.js" defer></script><script src="../shared/service-catalog.js" defer></script><script src="../shared/wakeel-data.js" defer></script><script src="../shared/demo-session.js" defer></script><script src="login.js" defer></script></head>
+<body>
+  <div class="login-page">
+    <div class="ambient ambient-one" aria-hidden="true"></div>
+    <div class="ambient ambient-two" aria-hidden="true"></div>
+
+    <!-- Header: one unified background across the entire page -->
+    <header class="page-header">
+      <a class="brand" href="../master-landing-page/landing.html" aria-label="وكيل — العودة إلى الصفحة الرئيسية">
+        <img src="../master-landing-page/assets/wakeel-mark.png" alt="" width="48" height="48">
+        <span class="brand-name">
+          <strong>وكيل</strong>
+          <small>WAKEEL</small>
+        </span>
+      </a>
+      <a class="back-home" href="../master-landing-page/landing.html">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V10Z"/><path d="M9 21v-8h6v8"/></svg>
+        <span>العودة للرئيسية</span>
+      </a>
+    </header>
+
+    <main class="page-content">
+      <div class="intro">
+        <span class="intro-label"><span class="label-dot"></span> تجربة أبسط لإدارة معاملاتك</span>
+        <h1>معاملاتك.. <span>بيد أمينة</span></h1>
+        <p>منصة وكيل تربطك بمقدمي خدمات متابعة المعاملات، وتساعدك على مقارنة العروض ومتابعة كل خطوة حتى الإنجاز.</p>
+      </div>
+
+      <!-- One continuous visual canvas — no split-color sections -->
+      <div class="auth-stage">
+        <div class="visual-scene" aria-label="رسم متحرك توضيحي لخدمات وكيل">
+          <div class="visual-glow" aria-hidden="true"></div>
+          <iframe
+            class="login-lottie-frame"
+            src="https://lottie.host/embed/9f1748cf-c0db-4e84-b1a2-693c0884e627/1tC9XekUi0.lottie"
+            title="أنيميشن وكيل"
+            loading="lazy"
+            scrolling="no"
+            tabindex="-1">
+          </iframe>
+          <div class="login-lottie-reduced" aria-hidden="true">
+            <span class="reduced-icon">✓</span>
+            معاملاتك في مكان واحد
+          </div>
+          <div class="visual-caption" aria-hidden="true">
+            <span class="caption-icon">✓</span>
+            <span>كل خطوة أوضح وأسهل</span>
+          </div>
+        </div>
+
+        <section class="login-card" aria-labelledby="login-title">
+          <div class="card-accent" aria-hidden="true"></div>
+          <div class="login-heading">
+            <span class="welcome-tag">مرحبًا بعودتك <span aria-hidden="true">✦</span></span>
+            <h2 id="login-title">تسجيل الدخول</h2>
+            <p>أدخل بيانات حسابك لمتابعة طلباتك ومعاملاتك.</p>
+          </div>
+
+          <!-- Preserves the existing demo form; backend authentication is not implemented here. -->
+          <form class="login-form" id="loginForm">
+            <div class="form-group">
+              <label for="email">البريد الإلكتروني</label>
+              <div class="input-wrap">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m4 7 8 6 8-6"/></svg>
+                <input id="email" name="email" type="email" autocomplete="email" placeholder="example@email.com" required dir="ltr">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="label-row">
+                <label for="password">كلمة المرور</label>
+              </div>
+              <div class="input-wrap password-wrap">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
+                <input id="password" name="password" type="password" autocomplete="current-password" placeholder="أدخل كلمة المرور" minlength="8" required>
+                <button type="button" class="show-password" aria-label="إظهار كلمة المرور" aria-pressed="false" title="إظهار أو إخفاء كلمة المرور">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.6-6.4 10-6.4S22 12 22 12s-3.6 6.4-10 6.4S2 12 2 12Z"/><circle cx="12" cy="12" r="2.7"/></svg>
+                </button>
+              </div>
+            </div>
+
+            <div id="demoLoginInfo" class="demo-login-info" aria-label="بيانات دخول حسابات التجربة"></div><p id="loginError" class="login-error" role="alert" hidden></p>
+<div class="form-options">
+              <label class="remember-me"><input name="remember" type="checkbox"><span>تذكرني</span></label>
+              <button type="button" class="forgot-link" disabled title="استعادة كلمة المرور غير متوفرة في النسخة التجريبية">نسيت كلمة المرور؟</button>
+            </div>
+
+            <button class="login-btn" type="submit">
+              <span>تسجيل الدخول</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5m7-7-7 7 7 7"/></svg>
+            </button>
+          </form>
+
+          <div class="divider"><span>أو المتابعة عبر</span></div>
+          <div class="social-login" aria-label="طرق تسجيل الدخول المستقبلية">
+            <button class="social-btn" type="button" disabled title="غير متاح حاليًا">Google</button>
+            <button class="social-btn" type="button" disabled title="غير متاح حاليًا">Apple</button>
+            <button class="social-btn" type="button" disabled title="غير متاح حاليًا">Microsoft</button>
+          </div>
+
+          <div class="register-link">
+            <span>جديد في وكيل؟</span>
+            <a href="../master-register/register.html">أنشئ حسابك الآن
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5m7-7-7 7 7 7"/></svg>
+            </a>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <footer class="page-footer">
+      <span>© وكيل — منصة مستقلة لتسهيل الوصول إلى مقدمي الخدمات</span>
+      <span class="footer-dot" aria-hidden="true"></span>
+      <span>تجربة أكثر وضوحًا، من البداية حتى الإنجاز</span>
+    </footer>
+  </div>
+
+
+</body>
+</html>
+

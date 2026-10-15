@@ -1,0 +1,40 @@
+"use strict";
+const assert=require("node:assert/strict"),fs=require("node:fs"),path=require("node:path"),vm=require("node:vm"),crypto=require("node:crypto");
+const root=path.resolve(__dirname,"../.."),storage=new Map(),checks=[];let refuseWrites=false;
+storage.set("wakeel_client_profile_demo_v1",JSON.stringify({fullName:"عميل قديم",email:"OLD@EXAMPLE.COM",phone:"+962791234567",city:"إربد"}));
+storage.set("wakeel_client_requests_v1",JSON.stringify([{id:"OLD-1",title:"طلب قديم",city:"إربد",date:"12/10/2026",status:"offers",description:"طلب سابق محفوظ"}]));
+storage.set("wakeel_request_demo_10212",JSON.stringify({rating:4,status:"completed"}));
+storage.set("wakeel_admin_demo_v1",'{"sentinel":true}');
+const context={console,Date,Intl,JSON,Math,Number,String,Boolean,Array,Object,Error,setTimeout,clearTimeout,crypto:{randomUUID:crypto.randomUUID},CustomEvent:class{constructor(type,options){this.type=type;this.detail=options?.detail;}},dispatchEvent(){},addEventListener(){},localStorage:{getItem:key=>storage.get(key)||null,setItem(key,value){if(refuseWrites){const e=new Error("Quota");e.name="QuotaExceededError";throw e;}storage.set(key,String(value));}}};
+context.window=context;vm.createContext(context);
+for(const file of ["account-schema.js","service-catalog.js","wakeel-data.js"])vm.runInContext(fs.readFileSync(path.join(root,"shared",file),"utf8"),context,{filename:file});
+const D=context.WakeelData,A=context.WakeelAccount,C=context.WakeelCatalogue;
+function check(name,test){test();checks.push(name);}
+function ok(result){assert.equal(result.ok,true,result.error);return result.value;}
+function no(result){assert.equal(result.ok,false);return result;}
+const input={ministryId:"interior",city:"irbid",departmentId:"dvld",serviceId:"dvld-1",description:"متابعة إجراءات تجديد الرخصة وإكمال المستندات المطلوبة.",priority:"normal",budget:35,targetDays:7};
+check("Migration preserves ids, rating, old keys and Admin isolation",()=>{assert(D.request("OLD-1"));assert.equal(D.request("10212").rating,4);assert(storage.has("wakeel_client_requests_v1"));assert.equal(storage.get("wakeel_admin_demo_v1"),'{"sentinel":true}');});
+check("Registration schema normalizes phone, city and email",()=>{assert.equal(D.profile("client").phone,"0791234567");assert.equal(D.profile("client").city,"irbid");assert.equal(D.profile("client").email,"old@example.com");assert.equal(A.phone("٠٠٩٦٢٧٩١٢٣٤٥٦٧"),"0791234567");assert.equal(A.international("0790000000"),"");});
+check("Catalogue identifiers and foreign keys are consistent",()=>{for(const list of ["ministries","departments","services"]){assert.equal(new Set(C[list].map(x=>x.id)).size,C[list].length);}for(const dep of C.departments){assert(C.get("ministries",dep.ministry));if(dep.city)assert(A.cityId(dep.city));}for(const service of C.services)assert(C.departments.some(d=>d.group===service.group));});
+check("Directorate options exclude other governorates",()=>{assert(C.departmentsFor("interior","irbid").every(d=>!d.city||d.city==="irbid"));});
+check("Invalid ministry and directorate combination is atomic",()=>{const before=storage.get(D.KEY);no(D.create({...input,ministryId:"education"}));assert.equal(storage.get(D.KEY),before);});
+check("Invalid service and missing Other title rejected",()=>{no(D.create({...input,serviceId:"not-a-service"}));no(D.create({...input,serviceId:"other",exactTitle:""}));});
+check("Incomplete drafts remain editable until publication",()=>{const draft=ok(D.create({description:""}, "draft"));assert.equal(draft.status,"draft");const published=ok(D.create(input,"published",draft.id));assert.equal(published.id,draft.id);assert.equal(published.status,"published");});
+const request=ok(D.create(input));
+let offer,payment;
+check("Only own pending offer can be changed or withdrawn",()=>{offer=ok(D.submitOffer(request.id,{price:28,days:3,notes:"متابعة كاملة للمعاملة والمستندات."}));const edited=ok(D.submitOffer(request.id,{price:29,days:4,notes:"تفاصيل عرض معدّلة للمتابعة."}));assert.equal(edited.id,offer.id);assert.equal(D.offersFor(request.id).length,1);offer=edited;});
+check("Acceptance binds request, selected offer and unique invoice",()=>{payment=ok(D.acceptOffer(request.id,offer.id));assert.equal(D.request(request.id).status,"awaiting-payment");assert.equal(payment.offer,offer.id);assert.equal(payment.amount,29);assert(payment.billReference.startsWith("DEMO-BILL-"));});
+check("Duplicate acceptance and execution before payment rejected",()=>{no(D.acceptOffer(request.id,offer.id));no(D.progress(request.id,1,"تحديث غير مسموح"));});
+const year=new Date().getFullYear()+2;
+const declined=ok(D.addMethod({testCard:"demo-declined",holder:"عميل الاختبار",month:12,year}));
+check("Decline retains request awaiting payment",()=>{const attempt=ok(D.beginPayment(request.id,"card",declined.id));ok(D.finishPayment(payment.id,attempt.attempt.id,"declined"));assert.equal(D.request(request.id).status,"awaiting-payment");assert.equal(D.payment(payment.id).status,"failed");});
+check("Concurrent attempt rejected and cancel blocks late success",()=>{const attempt=ok(D.beginPayment(request.id,"bill"));no(D.beginPayment(request.id,"bill"));ok(D.finishPayment(payment.id,attempt.attempt.id,"cancelled"));ok(D.finishPayment(payment.id,attempt.attempt.id,"success"));assert.equal(D.request(request.id).status,"awaiting-payment");assert.equal(D.payment(payment.id).status,"cancelled");});
+const success=ok(D.addMethod({testCard:"demo-visa",holder:"عميل الاختبار",month:12,year}));
+check("Default card, removal and expiry validation",()=>{ok(D.defaultMethod(success.id));assert.equal(D.state.methods.filter(m=>m.isDefault).length,1);no(D.addMethod({testCard:"demo-visa",holder:"اختبار",month:1,year:2000}));});
+let receipt;
+check("Successful payment starts execution, repeated result keeps receipt",()=>{const attempt=ok(D.beginPayment(request.id,"card",success.id));no(D.removeMethod(success.id));receipt=ok(D.finishPayment(payment.id,attempt.attempt.id,"success")).receipt;assert.equal(D.request(request.id).status,"active");assert.equal(ok(D.finishPayment(payment.id,attempt.attempt.id,"success")).receipt,receipt);});
+check("Card changes and deletion preserve historical snapshot",()=>{ok(D.addMethod({testCard:"demo-mastercard",holder:"اسم جديد",month:12,year},success.id));assert.equal(D.payment(payment.id).methodSnapshot.holder,"عميل الاختبار");ok(D.removeMethod(success.id));assert.equal(D.payment(payment.id).receipt,receipt);assert.equal(D.state.methods.filter(m=>m.isDefault).length,1);});
+check("Progress cannot go backwards; completion updates entitlement",()=>{ok(D.progress(request.id,2,"تم تقديم المعاملة للجهة المختصة."));no(D.progress(request.id,1,"مرحلة أقدم غير مسموحة."));ok(D.progress(request.id,3,"تم إنجاز الطلب واستكمال الإجراءات."));assert.equal(D.request(request.id).status,"completed");assert.equal(D.payment(payment.id).entitlement,"pending");});
+check("Storage failure cannot partially commit a request",()=>{const before=storage.get(D.KEY);refuseWrites=true;no(D.create(input));refuseWrites=false;assert.equal(storage.get(D.KEY),before);});
+check("No full card number, CVV or password is persisted",()=>{const s=storage.get(D.KEY);for(const field of ['"cvv"','"cvc"','"password"','"cardNumber"'])assert(!s.includes(field));assert.equal(storage.get("wakeel_admin_demo_v1"),'{"sentinel":true}');});
+console.log(JSON.stringify({passed:checks.length,checks,catalogue:{ministries:C.ministries.length,directorates:C.departments.length,services:C.services.length}},null,2));

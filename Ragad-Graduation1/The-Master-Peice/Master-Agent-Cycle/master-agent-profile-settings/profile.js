@@ -1,0 +1,10 @@
+(() => {const D=WakeelData,U=WakeelFlow,A=WakeelAccount,AU=AgentUI;
+U.fillSelect(U.$("city"),A.provinces,"اختر المحافظة");
+U.$("serviceChoices").innerHTML=AgentData.categories.map(v=>'<label class="check"><input type="checkbox" name="services" value="'+U.esc(v)+'">'+U.esc(v)+'</label>').join("");
+U.$("coverageChoices").innerHTML=A.provinces.map(p=>'<label class="check"><input type="checkbox" name="coverage" value="'+p.id+'">'+U.esc(p.name)+'</label>').join("");
+function identity(){const p=D.profile("agent");U.$("identity").innerHTML='<div class="avatar">'+U.esc(p.fullName[0]||"و")+'</div><h3>'+U.esc(p.fullName)+'</h3><p>'+U.esc(p.email)+'</p><span class="count-pill">مقدم خدمات متابعة المعاملات</span><p>'+U.esc(A.cityName(p.city))+'</p>';AU.syncIdentity();}
+function fill(){const p=D.profile("agent");["fullName","email","phone","city","bio"].forEach(k=>U.$(k).value=p[k]||"");U.$("profileForm").querySelectorAll("input[type=checkbox]").forEach(c=>c.checked=(p[c.name]||[]).includes(c.value));identity();}
+U.$("profileForm").addEventListener("submit",e=>{e.preventDefault();const data=new FormData(e.currentTarget),p={fullName:String(data.get("fullName")).trim(),email:String(data.get("email")).trim(),phone:String(data.get("phone")).trim(),city:String(data.get("city")),bio:String(data.get("bio")).trim(),services:data.getAll("services"),coverage:data.getAll("coverage")};if(!p.services.length||!p.coverage.length){U.toast("اختر فئة خدمة ومحافظة تغطيها على الأقل.");return;}if(U.check(D.saveProfile("agent",p),"تم تحديث بيانات الوكيل وبيانات التواصل."))fill();});
+U.$("restoreProfile").addEventListener("click",()=>{fill();U.toast("تم التراجع عن التعديلات غير المحفوظة.");});
+const prefs=U.$("preferencesForm");prefs.querySelectorAll("input").forEach(c=>c.checked=Boolean(D.state.preferences.agent[c.name]));prefs.addEventListener("submit",e=>{e.preventDefault();const p={};prefs.querySelectorAll("input").forEach(c=>p[c.name]=c.checked);U.check(D.savePreferences("agent",p),"تم حفظ التفضيلات.");});window.addEventListener("wakeel:change",identity);fill();
+})();

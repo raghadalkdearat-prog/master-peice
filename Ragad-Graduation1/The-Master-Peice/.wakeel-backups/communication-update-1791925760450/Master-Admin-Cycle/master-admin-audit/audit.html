@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#163A5F"><meta name="description" content="كل إجراء مرتبط بصاحبه وسببه والسجل الذي تغيّر."><title>سجل الإجراءات | مساحة الإدارة — وكيل</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&amp;family=Inter:wght@500;600;700&amp;display=swap" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<link rel="stylesheet" href="../../Master-Client-Cycle/master-client-dash/client-dash.css"><link rel="stylesheet" href="../../Master-Client-Cycle/shared/shared.css"><link rel="stylesheet" href="../../Master-Agent-Cycle/master-agent-shared/agent-shell.css"><link rel="stylesheet" href="../master-admin-shared/admin-shell.css"><link rel="stylesheet" href="audit.css">
+<script src="../../shared/account-schema.js" defer></script>
+<script src="../../shared/service-catalog.js" defer></script>
+<script src="../../shared/wakeel-data.js" defer></script>
+<script src="../master-admin-shared/admin-data.js" defer></script><script src="../master-admin-shared/admin-shell.js" defer></script><script src="audit.js" defer></script><link rel="stylesheet" href="../../shared/client-update.css"></head>
+<body class="agent-app admin-app" data-page="audit"><a class="skip-link" href="#main">انتقل للمحتوى</a><div id="shared-navbar" class="landing-chrome"></div><svg aria-hidden="true" class="icon-defs" xmlns="http://www.w3.org/2000/svg">
+<symbol id="i-grid" viewBox="0 0 24 24"><rect height="7" rx="1.5" width="7" x="3" y="3"></rect><rect height="7" rx="1.5" width="7" x="14" y="3"></rect><rect height="7" rx="1.5" width="7" x="3" y="14"></rect><rect height="7" rx="1.5" width="7" x="14" y="14"></rect></symbol>
+<symbol id="i-file" viewBox="0 0 24 24"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9Z"></path><path d="M13 2v7h7M8 13h8M8 17h6"></path></symbol>
+<symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"></path></symbol>
+<symbol id="i-wallet" viewBox="0 0 24 24"><rect height="16" rx="3" width="20" x="2" y="5"></rect><path d="M2 9h20M6 5V3h13"></path><path d="M17 15h1"></path></symbol>
+<symbol id="i-bell" viewBox="0 0 24 24"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"></path></symbol>
+<symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"></circle><path d="M4 21a8 8 0 0 1 16 0"></path></symbol>
+<symbol id="i-help" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><path d="M9.6 9a2.5 2.5 0 1 1 4.6 1.5c-.5.7-2.2 1.3-2.2 3.2M12 17.5h.01"></path></symbol>
+<symbol id="i-logout" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"></path></symbol>
+<symbol id="i-search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"></circle><path d="m16 16 5 5"></path></symbol>
+<symbol id="i-arrow" viewBox="0 0 24 24"><path d="M19 12H5m7-7-7 7 7 7"></path></symbol>
+<symbol id="i-check" viewBox="0 0 24 24"><path d="m4 12 5 5L20 6"></path></symbol>
+<symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l4 2"></path></symbol>
+<symbol id="i-offer" viewBox="0 0 24 24"><path d="M4 4h16v12H9l-5 4V4Z"></path><path d="M8 9h8M8 12h5"></path></symbol>
+<symbol id="i-trend" viewBox="0 0 24 24"><path d="m3 17 6-6 4 4 8-8M15 7h6v6"></path></symbol>
+<symbol id="i-chevron" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"></path></symbol>
+<symbol id="i-shield" viewBox="0 0 24 24"><path d="m12 2 9 4v6c0 5-4 8-9 10-5-2-9-5-9-10V6l9-4Z"></path><path d="m8 12 3 3 5-5"></path></symbol>
+<symbol id="i-filter" viewBox="0 0 24 24"><path d="M4 7h16M7 12h10M10 17h4"></path></symbol>
+<symbol id="i-message" viewBox="0 0 24 24"><path d="M20 11a8 8 0 0 1-8 8H5l1.8-4A8 8 0 1 1 20 11Z"></path></symbol>
+</svg>
+<svg aria-hidden="true" class="svg-sprite" xmlns="http://www.w3.org/2000/svg">
+<symbol id="i-arrow-down" viewBox="0 0 24 24"><path d="M12 4v16m-6-6 6 6 6-6"></path></symbol>
+<symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="M3 12h18M12 3a16 16 0 0 1 0 18M12 3a16 16 0 0 0 0 18"></path></symbol>
+<symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"></path></symbol>
+<symbol id="i-file-plus" viewBox="0 0 24 24"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9zM13 2v7h7M12 12v7M8.5 15.5h7"></path></symbol>
+<symbol id="i-mail" viewBox="0 0 24 24"><rect height="14" rx="2" width="18" x="3" y="5"></rect><path d="m3 7 9 7 9-7"></path></symbol>
+<symbol id="i-users" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"></path></symbol>
+<symbol id="i-check-circle" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="m8 12 3 3 5-6"></path></symbol>
+<symbol id="i-pin" viewBox="0 0 24 24"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0z"></path><circle cx="12" cy="10" r="2.5"></circle></symbol>
+<symbol id="i-store" viewBox="0 0 24 24"><path d="m3 9 2-6h14l2 6v3a3 3 0 0 1-6 0 3 3 0 0 1-6 0 3 3 0 0 1-6 0zM5 15v6h14v-6M9 21v-6h6v6"></path></symbol>
+<symbol id="i-landmark" viewBox="0 0 24 24"><path d="m3 9 9-6 9 6zM4 21h16M6 19v-9M10 19v-9M14 19v-9M18 19v-9"></path></symbol>
+<symbol id="i-building" viewBox="0 0 24 24"><rect height="20" rx="1" width="16" x="4" y="2"></rect><path d="M9 7h1M14 7h1M9 12h1M14 12h1M9 17h1M14 17h1M10 22v-3h4v3"></path></symbol>
+<symbol id="i-scale" viewBox="0 0 24 24"><path d="M12 3v18M5 6h14M3 20h18M4 14l3-7 3 7zM14 14l3-7 3 7z"></path></symbol>
+<symbol id="i-folder" viewBox="0 0 24 24"><path d="M3 7V5a2 2 0 0 1 2-2h5l2 3h7a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></symbol>
+<symbol id="i-sparkles" viewBox="0 0 24 24"><path d="m12 3 1.7 5.3L19 10l-5.3 1.7L12 17l-1.7-5.3L5 10l5.3-1.7zM19 17l.7 2.3L22 20l-2.3.7L19 23l-.7-2.3L16 20l2.3-.7zM3 3l.5 1.5L5 5l-1.5.5L3 7l-.5-1.5L1 5l1.5-.5z"></path></symbol>
+<symbol id="i-star" viewBox="0 0 24 24"><path d="m12 2 3 6.6 7.2.8-5.4 5 1.5 7L12 18l-6.3 3.4 1.5-7-5.4-5 7.2-.8z"></path></symbol>
+<symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 20V4M4 20h17M8 17v-4M13 17V8M18 17V5"></path></symbol>
+<symbol id="i-play" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="m10 8 6 4-6 4z"></path></symbol>
+<symbol id="i-instagram" viewBox="0 0 24 24"><rect height="18" rx="5" width="18" x="3" y="3"></rect><circle cx="12" cy="12" r="4"></circle><path d="M17.5 6.5h.01"></path></symbol>
+<symbol id="i-linkedin" viewBox="0 0 24 24"><rect height="18" rx="2" width="18" x="3" y="3"></rect><path d="M8 10v7M8 7v.01M12 17v-7M12 13a3 3 0 0 1 6 0v4"></path></symbol>
+<symbol id="i-facebook" viewBox="0 0 24 24"><path d="M15 21v-8h3l.5-4H15V7c0-1 .4-1.6 2-1.6h2V2h-3c-3.5 0-5 2-5 5v2H8v4h3v8"></path></symbol>
+<symbol id="i-alert" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v6M12 17v.1"></path></symbol>
+</svg>
+<div class="app-shell"><aside class="sidebar" aria-label="القائمة الجانبية"><p class="nav-caption">مساحة الإدارة</p><nav class="side-nav" aria-label="صفحات الإدارة"><a class="nav-item" data-permission="dashboard.view" href="../master-admin-dash/dashboard.html"><svg aria-hidden="true"><use href="#i-grid"></use></svg>لوحة التحكم</a>
+<a class="nav-item" data-permission="users.view" href="../master-admin-users/users.html"><svg aria-hidden="true"><use href="#i-users"></use></svg>إدارة المستخدمين</a>
+<a class="nav-item" data-permission="requests.view" href="../master-admin-requests/requests.html"><svg aria-hidden="true"><use href="#i-file"></use></svg>إدارة المعاملات</a>
+<a class="nav-item" data-permission="payments.view" href="../master-admin-payments/payments.html"><svg aria-hidden="true"><use href="#i-wallet"></use></svg>المدفوعات والمستحقات</a>
+<a class="nav-item" data-permission="support.view" href="../master-admin-support/support.html"><svg aria-hidden="true"><use href="#i-help"></use></svg>الدعم والشكاوى</a>
+<a class="nav-item" data-permission="reviews.view" href="../master-admin-reviews/reviews.html"><svg aria-hidden="true"><use href="#i-star"></use></svg>إدارة التقييمات</a>
+<a class="nav-item" data-permission="notifications.view" href="../master-admin-notifications/notifications.html"><svg aria-hidden="true"><use href="#i-bell"></use></svg>الإشعارات</a>
+<a class="nav-item" data-permission="services.view" href="../master-admin-services/services.html"><svg aria-hidden="true"><use href="#i-folder"></use></svg>فئات الخدمات</a>
+<a class="nav-item" data-permission="settings.view" href="../master-admin-settings/settings.html"><svg aria-hidden="true"><use href="#i-user"></use></svg>الإعدادات والصلاحيات</a>
+<a class="nav-item current" aria-current="page" data-permission="audit.view" href="../master-admin-audit/audit.html"><svg aria-hidden="true"><use href="#i-shield"></use></svg>سجل الإجراءات</a></nav><div class="sidebar-bottom"><div class="support-widget"><span class="support-illustration"><svg aria-hidden="true"><use href="#i-shield"></use></svg></span><strong>إجراءات واضحة وموثقة</strong><p>راجع السجل لمعرفة التغييرات وأسبابها.</p><a href="../master-admin-audit/audit.html" data-permission="audit.view">سجل الإجراءات <svg aria-hidden="true"><use href="#i-arrow"></use></svg></a></div><a class="logout" href="../../master-login/login.html"><svg aria-hidden="true"><use href="#i-logout"></use></svg> تسجيل الخروج</a><a class="client-switch" href="../../Master-Client-Cycle/master-client-dash/client-dash.html">مساحة العميل <svg aria-hidden="true"><use href="#i-arrow"></use></svg></a><a class="client-switch" href="../../Master-Agent-Cycle/master-agent-dash/dashboard.html">مساحة الوكيل <svg aria-hidden="true"><use href="#i-arrow"></use></svg></a></div></aside><div class="main-column"><main class="dashboard" id="main" tabindex="-1"><div class="welcome-row"><div><div class="eyebrow"><span class="eyebrow-dot"></span> مساحة الإدارة / سجل الإجراءات</div><h1 id="pageTitle">سجل الإجراءات</h1><p>كل إجراء مرتبط بصاحبه وسببه والسجل الذي تغيّر.</p></div><span class="count-pill" id="actorRole"></span></div><p class="demo-note">نسخة تجريبية · بيانات الإدارة مستقلة، وإجراءاتها محفوظة محليًا.</p><p id="storageError" class="error-box" role="alert" hidden></p><section class="panel" id="accessDenied" hidden><div class="panel-heading"><h2>لا تتوفر صلاحية لهذه الصفحة</h2></div><div class="panel-body"><p>راجع الصلاحيات المحددة للحساب الإداري الحالي.</p><a class="button secondary" href="../master-admin-settings/settings.html">الإعدادات والصلاحيات</a></div></section><div id="pageContent"><section class="panel"><div class="panel-heading"><h2>سجل الإجراءات الإدارية</h2></div><div class="filters"><label>البحث<input id="search" type="search" placeholder="ابحث بالاسم أو الرقم"></label><label>صاحب الإجراء<select id="actor"><option value="all">الكل</option></select></label><label>نوع السجل<select id="entity"><option value="all">الكل</option><option value="user">مستخدم</option><option value="request">معاملة</option><option value="offer">عرض</option><option value="payment">عملية مالية</option><option value="ticket">تذكرة</option><option value="review">تقييم</option><option value="notification">إشعار</option><option value="service">فئة</option><option value="admin">حساب إدارة</option><option value="role">صلاحيات</option><option value="session">جلسة عرض</option></select></label><button type="button" class="button secondary" id="resetFilters">مسح الفلاتر</button></div><div id="auditTable"></div></section><p class="demo-note">السجل للعرض فقط داخل الواجهة. حماية السجل من التلاعب تتطلب خادمًا.</p></div><noscript><p class="error-box">فعّل JavaScript لعرض البيانات واستخدام الوظائف. روابط التنقل متاحة من القائمة.</p></noscript></main></div></div><div id="shared-footer" class="landing-chrome"></div>
+<div class="toast" id="adminToast" role="status" hidden></div><dialog id="adminDialog" aria-labelledby="adminDialogTitle"><div class="dialog-heading"><h2 id="adminDialogTitle"></h2><button type="button" class="icon-button" data-close-dialog aria-label="إغلاق">×</button></div><div id="adminDialogBody"></div></dialog></body></html>
+
+

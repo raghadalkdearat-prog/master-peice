@@ -1,0 +1,11 @@
+/* Public demo identities; this is local navigation, not backend authentication. */
+(() => {"use strict";const accounts=[{role:"client",label:"العميل",email:"client@wakeel.test",password:"WakeelClient@123",id:"client-1",path:"Master-Client-Cycle/master-client-dash/client-dash.html"},{role:"agent",label:"الوكيل",email:"agent@wakeel.test",password:"WakeelAgent@123",id:"agent-1",path:"Master-Agent-Cycle/master-agent-dash/dashboard.html"},{role:"admin",label:"مدير المنصة",email:"admin@wakeel.test",password:"WakeelAdmin@123",id:"ADM-1",path:"Master-Admin-Cycle/master-admin-dash/dashboard.html"}],key="wakeel_demo_session_v1";
+const root=new URL("../",document.currentScript.src);
+function current(){try{const s=JSON.parse(sessionStorage.getItem(key)||localStorage.getItem(key)||"null");if(!s)return null;if(s.expires<=Date.now()||!accounts.some(a=>a.role===s.role&&a.id===s.id)){sessionStorage.removeItem(key);localStorage.removeItem(key);return null;}return s;}catch{return null;}}
+function login(email,password,remember=false){const account=accounts.find(a=>a.email===String(email).trim().toLowerCase()&&a.password===password);if(!account)return {ok:false,error:"البريد الإلكتروني أو كلمة المرور غير صحيحة."};const s={role:account.role,id:account.id,createdAt:new Date().toISOString(),expires:Date.now()+(remember?7*86400000:12*3600000)};
+try{sessionStorage.removeItem(key);localStorage.removeItem(key);(remember?localStorage:sessionStorage).setItem(key,JSON.stringify(s));}catch{return {ok:false,error:"تعذر حفظ جلسة الدخول في المتصفح."};}
+window.WakeelData?.recordSession(account.role,"login");return {ok:true,session:s,url:new URL(account.path,root).href};}
+function logout(){const session=current();if(session)window.WakeelData?.recordSession(session.role,"logout");sessionStorage.removeItem(key);localStorage.removeItem(key);}
+window.WakeelSession={accounts:accounts.map(a=>({...a})),current,login,logout,root:root.href};
+document.addEventListener("click",ev=>{const link=ev.target.closest("a");if(link&&link.matches(".nav-logout,.sidebar-logout,.logout,.mobile-nav-cta")&&new URL(link.href,location.href).pathname.endsWith("/master-login/login.html"))logout();});
+})();

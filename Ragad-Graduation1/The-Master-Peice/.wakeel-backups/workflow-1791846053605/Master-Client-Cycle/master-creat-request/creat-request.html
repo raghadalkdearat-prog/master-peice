@@ -1,0 +1,392 @@
+
+<!DOCTYPE html>
+
+<html dir="rtl" lang="ar">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>إنشاء معاملة جديدة | وكيل</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700amp;family=Inter:wght@500;600;700amp;display=swap" rel="stylesheet"/>
+<link href="creat-request.css" rel="stylesheet"/>
+<link rel="stylesheet" href="../shared/shared.css">
+</head>
+<body>
+  <div id="shared-navbar" class="landing-chrome"></div>
+<!-- ========== Icons ========== -->
+<svg aria-hidden="true" class="svg-sprite" xmlns="http://www.w3.org/2000/svg">
+<symbol id="i-user" viewbox="0 0 24 24">
+<circle cx="12" cy="8" r="4"></circle>
+<path d="M4 21a8 8 0 0 1 16 0"></path>
+</symbol>
+<symbol id="i-logout" viewbox="0 0 24 24">
+<path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"></path>
+</symbol>
+<symbol id="i-grid" viewbox="0 0 24 24">
+<rect height="7" rx="1.5" width="7" x="3" y="3"></rect>
+<rect height="7" rx="1.5" width="7" x="14" y="3"></rect>
+<rect height="7" rx="1.5" width="7" x="3" y="14"></rect>
+<rect height="7" rx="1.5" width="7" x="14" y="14"></rect>
+</symbol>
+<symbol id="i-file" viewbox="0 0 24 24">
+<path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9Z"></path>
+<path d="M13 2v7h7M8 13h8M8 17h6"></path>
+</symbol>
+<symbol id="i-plus" viewbox="0 0 24 24">
+<path d="M12 5v14M5 12h14"></path>
+</symbol>
+<symbol id="i-wallet" viewbox="0 0 24 24">
+<rect height="16" rx="3" width="20" x="2" y="5"></rect>
+<path d="M2 9h20M6 5V3h13M17 15h1"></path>
+</symbol>
+<symbol id="i-bell" viewbox="0 0 24 24">
+<path d="M18 8a6 6 0 1 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"></path>
+</symbol>
+<symbol id="i-help" viewbox="0 0 24 24">
+<circle cx="12" cy="12" r="10"></circle>
+<path d="M9.6 9a2.5 2.5 0 1 1 4.6 1.5c-.5.7-2.2 1.3-2.2 3.2M12 17.5h.01"></path>
+</symbol>
+<symbol id="i-sparkles" viewbox="0 0 24 24">
+<path d="m12 3 1.7 5.3L19 10l-5.3 1.7L12 17l-1.7-5.3L5 10l5.3-1.7zM19 17l1 3 3 1-3 1-1 3-1-3-3-1 3-1z"></path>
+</symbol>
+<symbol id="i-upload" viewbox="0 0 24 24">
+<path d="M12 16V3m-5 5 5-5 5 5M4 16v4h16v-4"></path>
+</symbol>
+<symbol id="i-shield" viewbox="0 0 24 24">
+<path d="m12 2 9 4v6c0 5-4 8-9 10-5-2-9-5-9-10V6l9-4Z"></path>
+<path d="m8 12 3 3 5-5"></path>
+</symbol>
+<symbol id="i-chevron" viewbox="0 0 24 24">
+<path d="m9 18 6-6-6-6"></path>
+</symbol>
+<symbol id="i-menu" viewbox="0 0 24 24">
+<path d="M4 7h16M4 12h16M4 17h16"></path>
+</symbol>
+<symbol id="i-check" viewbox="0 0 24 24">
+<path d="m4 12 5 5L20 6"></path>
+</symbol>
+</svg>
+
+<!-- ======================================
+       CLIENT LAYOUT
+  ======================================= -->
+<div class="app-shell">
+<!-- Sidebar -->
+<aside class="sidebar">
+<p class="nav-caption">مساحة العميل</p>
+<nav class="side-nav">
+<a class="nav-item" href="../master-client-dash/client-dash.html">
+<svg><use href="#i-grid"></use></svg>
+          لوحة التحكم
+        </a>
+<a class="nav-item" href="../master-my-requests/my-requests.html">
+<svg><use href="#i-file"></use></svg>
+          معاملاتي
+        </a>
+<a aria-current="page" class="nav-item current" href="creat-request.html">
+<svg><use href="#i-plus"></use></svg>
+          إنشاء معاملة
+        </a>
+<a class="nav-item" href="../master-payments/payments.html">
+<svg><use href="#i-wallet"></use></svg>
+          المدفوعات
+        </a>
+<a class="nav-item" href="../master-notifications/notifications.html">
+<svg><use href="#i-bell"></use></svg>
+          الإشعارات
+        </a>
+</nav>
+<p class="nav-caption second-caption">الحساب والمساعدة</p>
+<nav class="side-nav">
+<a class="nav-item" href="../master-profile-settings/profile.html">
+<svg><use href="#i-user"></use></svg>
+          الملف الشخصي
+        </a>
+<a class="nav-item" href="../master-Support-Help/support.html">
+<svg><use href="#i-help"></use></svg>
+          المساعدة والدعم
+        </a>
+</nav>
+<div class="sidebar-bottom">
+<div class="support-widget">
+<span class="support-icon">
+<svg><use href="#i-shield"></use></svg>
+</span>
+<strong>نحن هنا لمساعدتك</strong>
+<p>هل تحتاج مساعدة في إنشاء طلبك؟</p>
+<a href="../master-Support-Help/support.html">تواصل معنا ←</a>
+</div>
+<a class="sidebar-logout" href="../../master-login/login.html">
+<svg><use href="#i-logout"></use></svg>
+          تسجيل الخروج
+        </a>
+</div>
+</aside>
+<!-- ======================================
+         CREATE REQUEST CONTENT
+    ======================================= -->
+<main class="main-content">
+<!-- Page Header -->
+<div class="page-heading">
+<div>
+<div class="breadcrumb">
+<a href="../master-client-dash/client-dash.html">لوحة التحكم</a>
+<svg><use href="#i-chevron"></use></svg>
+<span>إنشاء معاملة جديدة</span>
+</div>
+<h1>إنشاء معاملة جديدة</h1>
+<p>أخبرنا بتفاصيل معاملتك حتى يتمكن مقدمو الخدمة من تقديم عروض مناسبة.</p>
+</div>
+<span class="draft-label">
+<span></span>
+          طلب جديد
+        </span>
+</div>
+<div class="request-layout">
+<!-- Main Form -->
+<div class="request-main">
+<!-- Step Indicator -->
+<div aria-label="مراحل إنشاء الطلب" class="stepper">
+<div class="step active">
+<span>1</span>
+<strong>تفاصيل المعاملة</strong>
+</div>
+<div class="step-line"></div>
+<div class="step">
+<span>2</span>
+<strong>المراجعة</strong>
+</div>
+<div class="step-line"></div>
+<div class="step">
+<span>3</span>
+<strong>النشر</strong>
+</div>
+</div>
+<!-- Form -->
+<form class="request-form" enctype="multipart/form-data" id="createRequestForm" method="post">
+<!-- Request Basics -->
+<section class="form-card">
+<div class="section-heading">
+<span class="section-number">01</span>
+<div>
+<h2>معلومات المعاملة</h2>
+<p>أدخل البيانات الأساسية لطلبك.</p>
+</div>
+</div>
+<div class="form-group">
+<label for="requestTitle">عنوان المعاملة <em>*</em></label>
+<input id="requestTitle" maxlength="120" name="title" placeholder="مثال: تجديد رخصة مركبة" required="" type="text"/>
+</div>
+<div class="form-row">
+<div class="form-group">
+<label for="category">نوع المعاملة <em>*</em></label>
+<select id="category" name="category" required="">
+<option value="">اختر نوع المعاملة</option>
+<option value="vehicle">معاملات المركبات</option>
+<option value="licensing">التراخيص</option>
+<option value="company">معاملات الشركات</option>
+<option value="property">العقارات والأراضي</option>
+<option value="documents">الوثائق والمستندات</option>
+<option value="tax">المعاملات الضريبية</option>
+<option value="other">أخرى</option>
+</select>
+</div>
+<div class="form-group">
+<label for="governorate">المحافظة <em>*</em></label>
+<select id="governorate" name="governorate" required="">
+<option value="">اختر المحافظة</option>
+<option value="amman">عمان</option>
+<option value="irbid">إربد</option>
+<option value="zarqa">الزرقاء</option>
+<option value="balqa">البلقاء</option>
+<option value="ajloun">عجلون</option>
+<option value="jerash">جرش</option>
+<option value="mafraq">المفرق</option>
+<option value="madaba">مادبا</option>
+<option value="karak">الكرك</option>
+<option value="tafilah">الطفيلة</option>
+<option value="maan">معان</option>
+<option value="aqaba">العقبة</option>
+</select>
+</div>
+</div>
+<div class="form-group">
+<label for="department">الدائرة أو الجهة المعنية</label>
+<input id="department" name="department" placeholder="مثال: دائرة ترخيص السواقين والمركبات" type="text"/>
+</div>
+<div class="form-group">
+<label for="description">وصف المعاملة <em>*</em></label>
+<textarea id="description" maxlength="3000" minlength="20" name="description" placeholder="اشرح تفاصيل المعاملة، الوضع الحالي، وما الذي تحتاج من مقدم الخدمة تنفيذه..." required="" rows="6"></textarea>
+<small>كلما كان الوصف أوضح، كانت العروض أنسب لطلبك.</small>
+</div>
+</section>
+<!-- Timeline & Budget -->
+<section class="form-card">
+<div class="section-heading">
+<span class="section-number">02</span>
+<div>
+<h2>الوقت والميزانية</h2>
+<p>حدد أولوية المعاملة والتكلفة المناسبة لك.</p>
+</div>
+</div>
+<div class="form-group">
+<label>مستوى الأولوية <em>*</em></label>
+<div class="priority-options">
+<label class="priority-option">
+<input checked="" name="priority" type="radio" value="normal"/>
+<span class="priority-content">
+<strong>عادي</strong>
+<small>لا يوجد استعجال</small>
+</span>
+</label>
+<label class="priority-option">
+<input name="priority" type="radio" value="high"/>
+<span class="priority-content">
+<strong>مهم</strong>
+<small>أفضل إنجاز قريب</small>
+</span>
+</label>
+<label class="priority-option">
+<input name="priority" type="radio" value="urgent"/>
+<span class="priority-content">
+<strong>مستعجل</strong>
+<small>أحتاج تنفيذًا سريعًا</small>
+</span>
+</label>
+</div>
+</div>
+<div class="form-row">
+<div class="form-group">
+<label for="budget">الميزانية المقترحة (د.أ)</label>
+<div class="input-with-unit">
+<input id="budget" min="0" name="budget" placeholder="مثال: 25" step="0.01" type="number"/>
+<span>JOD</span>
+</div>
+<small>اختياري — يمكنك استقبال عروض دون تحديد ميزانية.</small>
+</div>
+<div class="form-group">
+<label for="deadline">تاريخ الإنجاز المطلوب</label>
+<input id="deadline" name="deadline" type="date"/>
+<small>سيتم التحقق من التاريخ قبل النشر.</small>
+</div>
+</div>
+</section>
+<!-- Documents -->
+<section class="form-card">
+<div class="section-heading">
+<span class="section-number">03</span>
+<div>
+<h2>المستندات المرفقة</h2>
+<p>أرفق الملفات اللازمة لتوضيح طلبك إن وجدت.</p>
+</div>
+</div>
+<label class="upload-area" for="documents">
+<span class="upload-icon">
+<svg><use href="#i-upload"></use></svg>
+</span>
+<strong>اضغط لاختيار الملفات</strong>
+<span>PDF أو PNG أو JPG</span>
+<small>يمكن اختيار عدة ملفات</small>
+</label>
+<input accept=".pdf,.png,.jpg,.jpeg" class="file-input" id="documents" multiple="" name="documents" type="file"/>
+<div class="privacy-note">
+<svg><use href="#i-shield"></use></svg>
+<p>
+                  يرجى عدم إرفاق معلومات حساسة غير ضرورية.
+                  سنضيف صلاحيات الوصول الآمن للمستندات عند ربط النظام.
+                </p>
+</div>
+</section>
+<!-- Form Actions -->
+<div class="form-actions">
+<a class="btn-cancel" href="../master-client-dash/client-dash.html">
+                إلغاء
+              </a>
+<div class="action-buttons">
+<button class="btn-draft" disabled="" title="سيتاح حفظ المسودة عند ربط النظام" type="button">
+                  حفظ كمسودة
+                </button>
+<button class="btn-next" disabled="" title="ستتاح المراجعة والنشر بعد ربط النموذج" type="button">
+                  متابعة إلى المراجعة ←
+                </button>
+</div>
+</div>
+</form>
+</div>
+<!-- ======================================
+             RIGHT-SIDE INFO PANELS
+        ======================================= -->
+<aside class="request-aside">
+<!-- AI Assistant -->
+<section class="ai-card">
+<div class="ai-heading">
+<span class="ai-icon">
+<svg><use href="#i-sparkles"></use></svg>
+</span>
+<span class="ai-tag">AI ASSISTANT</span>
+</div>
+<h2>خلّي الذكاء الاصطناعي يساعدك</h2>
+<p>
+              احكي عن المعاملة بطريقتك، والمساعد الذكي
+              رح يساعدك في تنظيم تفاصيل الطلب.
+            </p>
+<div class="ai-sample">
+              "بدي أجدد رخصة سيارتي بإربد بأسرع وقت..."
+            </div>
+<button class="ai-button" disabled="" title="سيتم تفعيل المساعد الذكي عند ربط النظام" type="button">
+<svg><use href="#i-sparkles"></use></svg>
+              ابدأ مع المساعد الذكي
+            </button>
+<small class="ai-disclaimer">هذه الميزة قيد التطوير.</small>
+</section>
+<!-- Tips -->
+<section class="tips-card">
+<h3>نصائح للحصول على عروض أفضل</h3>
+<div class="tip">
+<span><svg><use href="#i-check"></use></svg></span>
+<p>اكتب وصفًا واضحًا لما تحتاج تنفيذه.</p>
+</div>
+<div class="tip">
+<span><svg><use href="#i-check"></use></svg></span>
+<p>حدد المحافظة والجهة المعنية بدقة.</p>
+</div>
+<div class="tip">
+<span><svg><use href="#i-check"></use></svg></span>
+<p>أضف موعدًا مناسبًا لإنجاز المعاملة.</p>
+</div>
+<div class="tip">
+<span><svg><use href="#i-check"></use></svg></span>
+<p>راجع المستندات قبل مشاركتها.</p>
+</div>
+</section>
+<!-- Workflow -->
+<section class="process-card">
+<h3>ماذا يحدث بعد النشر؟</h3>
+<div class="process-item">
+<span>01</span>
+<p>يظهر طلبك لمقدمي الخدمة المناسبين.</p>
+</div>
+<div class="process-item">
+<span>02</span>
+<p>تستقبل عروض السعر والمدة.</p>
+</div>
+<div class="process-item">
+<span>03</span>
+<p>تقارن العروض وتختار الأنسب.</p>
+</div>
+<div class="process-item">
+<span>04</span>
+<p>تتابع التنفيذ والتواصل عبر المنصة.</p>
+</div>
+</section>
+</aside>
+</div>
+</main>
+</div>
+<div id="shared-footer" class="landing-chrome"></div>
+
+<script src="../shared/shared.js" defer></script>
+<script defer="True" src="../wakeel-client-links.js"></script>
+</body>
+</html>

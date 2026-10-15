@@ -1,0 +1,9 @@
+(() => {const D=WakeelData,U=AgentUI;
+function render(){const all=D.state.payments.filter(p=>D.offer(p.offer)?.agent==="agent-1"),sum=rows=>rows.reduce((n,p)=>n+(p.agentAmount??p.amount),0),paid=all.filter(p=>p.status==="paid"||p.status==="legacy");
+U.metrics([["إجمالي المستحقات",U.money(sum(paid)),"wallet"],["قيد التنفيذ",U.money(sum(paid.filter(p=>p.entitlement==="held"))),"clock"],["بانتظار التسوية",U.money(sum(paid.filter(p=>p.entitlement==="pending"))),"clock"],["تمت التسوية",U.money(sum(paid.filter(p=>p.entitlement==="settled"))),"check"]]);
+const q=U.$("search").value.trim().toLowerCase(),status=U.$("status").value,labels={"awaiting-payment":"بانتظار دفع العميل",held:"قيد التنفيذ",pending:"بانتظار التسوية",settled:"تمت التسوية"},rows=all.filter(p=>(status==="all"||p.entitlement===status)&&(p.id+" "+p.request+" "+D.request(p.request)?.title).toLowerCase().includes(q));
+U.$("paymentsTable").innerHTML=rows.length?'<div class="table-scroll"><table><thead><tr><th>المعاملة</th><th>المبلغ</th><th>التاريخ</th><th>حالة المستحق</th><th>إجراء</th></tr></thead><tbody>'+rows.map(p=>'<tr><td><strong>'+U.esc(D.request(p.request)?.title)+'</strong><small>'+U.esc(p.id)+'</small></td><td>'+U.money(p.agentAmount??p.amount)+'</td><td>'+U.date(p.date)+'</td><td>'+U.badge(p.entitlement)+'</td><td><a class="text-action" href="'+U.href("request-details",p.request)+'">التفاصيل</a></td></tr>').join("")+'</tbody></table></div>':U.empty("لا توجد مستحقات مطابقة","تظهر هنا المستحقات المرتبطة بعروضك المقبولة.");
+U.$("paymentsTable").querySelectorAll(".status").forEach(el=>{const key=Object.keys(labels).find(k=>el.classList.contains(k));if(key)el.textContent=labels[key];});
+}
+U.$("search").addEventListener("input",render);U.$("status").addEventListener("change",render);window.addEventListener("wakeel:change",render);render();
+})();

@@ -1,0 +1,8 @@
+(() => {const D=WakeelData,U=WakeelFlow,A=WakeelAccount;
+function render(){const all=D.state.requests.filter(r=>r.owner==="client-1"),posted=all.filter(r=>["published","awaiting-payment"].includes(r.status));const h=document.querySelector(".welcome-row h1");if(h)h.textContent="مرحبًا بعودتك، "+D.profile("client").fullName+" ✦";
+const counts=[all.length,all.filter(r=>r.status==="active").length,all.filter(r=>r.status==="completed").length,posted.length];document.querySelectorAll(".metric-number").forEach((el,i)=>el.textContent=counts[i]||0);const last=document.querySelector(".metrics .metric:last-child");if(last){last.querySelector(".metric-bottom strong").textContent="المعاملات المطروحة";last.querySelector(".metric-bottom span").textContent="بانتظار عروض أو دفع";}
+const tbody=document.querySelector(".recent-panel tbody");if(tbody)tbody.innerHTML=all.filter(r=>r.status!=="draft").slice(0,4).map(r=>{const off=D.offer(r.selected);return '<tr><td><div class="request-info"><div><strong>'+U.esc(r.title)+'</strong><small>'+U.esc(r.id)+" · "+U.esc(A.cityName(r.city))+'</small></div></div></td><td>'+U.esc(off?D.person(off.agent).fullName:"بانتظار الاختيار")+'</td><td>'+U.date(r.date)+'</td><td>'+U.badge(r.status)+U.adminNotice(r,true)+'</td><td><a class="text-action" href="../master-request-details/request-details.html?id='+encodeURIComponent(r.id)+'">التفاصيل</a></td></tr>';}).join("");
+document.querySelectorAll(".create-banner a").forEach(a=>a.href="../master-creat-request/creat-request.html");
+}
+window.addEventListener("wakeel:change",render);render();
+})();

@@ -1,0 +1,4 @@
+/* الطلبات المتاحة: shared client visual language lives in agent-shell.css. */
+
+.filters.agent-available-filters{display:grid;grid-template-columns:repeat(4,minmax(0,1fr)) auto;align-items:end}.agent-app .filters.agent-available-filters label{min-width:0}.agent-available-filters .wf-combobox{min-width:0}.agent-available-filters .wf-combobox input{width:100%;min-width:0}
+@media(max-width:1200px){.filters.agent-available-filters{grid-template-columns:repeat(2,minmax(0,1fr))}.agent-available-filters>button{justify-self:start}}@media(max-width:640px){.filters.agent-available-filters{grid-template-columns:minmax(0,1fr)}}

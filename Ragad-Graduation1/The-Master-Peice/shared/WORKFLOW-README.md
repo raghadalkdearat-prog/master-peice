@@ -1,0 +1,87 @@
+# دورة معاملات وكيل — التشغيل والتحديثات
+
+شغّل المشروع عبر VS Code Live Server من جذر The-Master-Peice. يجب أن تُفتح دورات العميل والوكيل والأدمن على العنوان والمنفذ نفسيهما.
+- العميل: Master-Client-Cycle/master-client-dash/client-dash.html
+- الدفع: Master-Client-Cycle/master-payments/payments.html
+- الدعم: Master-Client-Cycle/master-Support-Help/support.html
+- التقييمات: Master-Client-Cycle/master-Reviews/reviews.html
+- الوكيل: Master-Agent-Cycle/master-agent-dash/dashboard.html
+- دعم الأدمن: Master-Admin-Cycle/master-admin-support/support.html
+
+## المعاملات والدفع
+طرح المعاملة → عرض الوكيل → قبول العميل → بانتظار الدفع → نجاح المحاولة → تنفيذ الوكيل → الإتمام والأرشيف.
+المفتاح wakeel_workflow_v2 يربط الطلبات والعروض والمدفوعات وبيانات التواصل اللازمة. المفاتيح السابقة محفوظة ويُستورد محتواها عند الترحيل؛ لا تحذفها أو تعيد ضبطها أثناء التحديث.
+
+payment-ui.js يعرض ملخص المعاملة واختيار البطاقة أو إي فواتيركم أو Orange Money أو الرقم المرتبط بالمعاملة/الفاتورة. زر المتابعة يراجع المبلغ والوسيلة، ثم يتطلب تأكيدًا ثانيًا. رقم المعاملة يستدعي مطالبة صاحب الحساب ولا ينشئ مطالبة جديدة، وإدخال رقم وحده ليس إثبات سداد لمزود حقيقي.
+
+payment-provider.js ما زال مزود محاكاة محليًا دون طلبات شبكة أو تحصيل أموال، وفق نطاق المرحلة المتفق عليه. لا تظهر عبارة تجريبي في واجهات الدفع. الشعارات لا تعني أن المنصة أصبحت متعاقدة مع المزود أو متصلة به.
+
+للاختبار الداخلي فقط: Visa 4242 4242 4242 4242 وMastercard 5555 5555 5555 4444 للنجاح، وVisa 4000 0000 0000 0002 للرفض. رمز الأمان ثلاثة أرقام. لا تستخدم معلومات دفع حقيقية في النسخة المحلية.
+
+addMethod يتحقق من Luhn ونوع البطاقة والانتهاء. لا يخزن الرقم الكامل أو CVV؛ تبقى بيانات العرض اللازمة وآخر أربعة أرقام فقط. تحديث البطاقة وحذفها لا يغيران سجل السداد السابق. Orange Money يحتفظ بآخر أربعة أرقام من رقم المحفظة في نسخة الدفع؛ لا يصدر رمز OTP ولا يرسل رسالة فعلية. مرجع الفاتورة محلي وغير صادر عن إي فواتيركم.
+
+الربط الحقيقي يحتاج مزودًا مرخّصًا وواجهات API مصادقة وخادمًا، hosted fields أو tokenization، والتحقق من النتائج عبر webhooks وإدارة التزامن. لا تعتمد الإنتاج على قرار نجاح صادر من المتصفح أو Local Storage.
+
+## الدعم
+clientUpdateVersion:1 يضيف supportTickets وsupportAudit ويرحّل تذاكر العميل السابقة. النموذج يحدد النوع ثم السبب، ويبحث في معاملات صاحب الحساب بالرقم والاسم، ويعرض الوكيل المقبول. مشاكل المعاملات والدفع تتطلب معاملة؛ التقنية والأخرى تسمح بتذكرة عامة.
+
+محادثة التذكرة بين العميل والإدارة، مع حالات open / in-progress / resolved / closed. الردود مقفلة بعد الحل والإغلاق؛ الإدارة تستطيع إعادة فتح التذكرة بسبب مسجل. لا تغيّر التذكرة حالة المعاملة أو تنفذ استردادًا ماليًا تلقائيًا.
+
+بيانات الأدمن الأساسية wakeel_admin_demo_v1 تبقى منفصلة. AdminData يقرأ تذاكر العميل والوكيل المشتركة ضمن support.view، ويتحقق من support.manage قبل الرد أو التحديث. الحساب الإداري الحالي الوحيد هو مدير المنصة. إجراءاتها تُسجل في supportAudit وتظهر في سجل الأدمن، وتصل إشعارات مرتبطة بالتذكرة إلى العميل. هذا اختبار صلاحيات واجهة محلية، وليس مصادقة أمنية على خادم.
+
+التواصل عبر واتساب والاتصال متاح إلى جانب محادثة مباشرة خاصة بالمعاملة، وملاحظات تنفيذ يرد عليها العميل في السياق نفسه.
+
+## التقييمات والتنقل
+reviews هو المصدر الواحد للتقييمات. الربط بالعميل والوكيل يستند إلى المعاملة المكتملة وعرضها المقبول. يسمح بتقييم واحد لكل معاملة؛ تعديل الرأي يحدّث السجل والمتوسط دون مضاعفة العدد. تُرحّل التقييمات المحفوظة السابقة وتقييمات الوكيل القديمة، ولا تُعتمد الأسماء الثابتة التي كانت موجودة في صفحة العميل.
+
+المعاملات الأحدث إنجازًا تظهر أولًا؛ completedAt يُسجّل عند الإتمام، مع تاريخ السجل السابق كبديل. النجوم تدعم اللمس والفأرة والأسهم وHome/End. تتحدث صفحة الوكيل عند wakeel:change وفي تبويبات العنوان نفسه عبر storage.
+
+wakeel-client-links.js يعرّف ترتيب القائمة لجميع صفحات العميل، بما فيها تقييماتي. يحدد القسم النشط بمساره دون الاعتماد على ترتيب عناصر HTML. navbar وfooter وتنسيقات الصفحات الأساسية الحالية مستخدمة.
+
+## الاختبارات
+من جذر المشروع:
+```
+node shared/tests/workflow-model.test.cjs
+node shared/tests/workflow-browser-qa.cjs
+```
+اختبار المنطق يعمل في ذاكرة مؤقتة، واختبار المتصفح يستخدم Edge على Windows وخادم 127.0.0.1 وملف متصفح مؤقت. لا يغيران Local Storage في متصفح المستخدم. تحفظ الصور في مجلد مؤقت يُطبع عند انتهاء الاختبار. تُحجب الخطوط وLottie الخارجية خلال الفحص فقط.
+
+## دليل الجهات
+service-catalog.js وcatalogue-sources.json يحتفظان بالدليل ومصادره الرسمية وتاريخ مراجعة 2026-10-13. تتبع الوزارة والمحافظة والمديرية والخدمة تبعياتها. الفروع المركزية موسومة بنطاقها؛ التغطية ليست حصرًا نهائيًا لكل مديرية ومعاملة في الأردن.
+
+
+## تحديث التواصل والدخول — 2026-10-14
+
+communicationVersion:1 يضيف رسائل المعاملة ومعرّفات ملاحظات التنفيذ وحالات قراءتها وسجل activity. التحديث يحوّل الملاحظات الموجودة إلى رسائل ملاحظات، دون حذف سجلها الأصلي أو تكرارها. كل رد يستطيع الإشارة إلى معرّف الملاحظة. تظهر علامة حمراء بجانب «قيد التنفيذ» ويمكن فتح المحادثة منها أو من قسم التواصل. المحادثة متاحة بعد قبول العرض لأطراف المعاملة، وتبقى متاحة عند الإتمام. هذا ربط محلي؛ تبويبات المتصفح على الأصل نفسه تتحدث عبر storage، والمشاركة بين أجهزة تتطلب خادمًا.
+
+تذاكر الوكيل السابقة في agentTickets تُرحّل إلى supportTickets مع ownerRole:agent. الوكيل لا يقرأ تذاكر العميل، والعميل لا يرد على تذاكر الوكيل عبر واجهات النموذج. رد مدير المنصة يصل إلى صاحب التذكرة وتظهر حالتها في مساحته.
+
+الأدمن يحتوي مدير المنصة ADM-1 فقط، ودور root واحد. تُرحّل الحسابات والأدوار والتقييمات الإدارية السابقة إلى أرشيف داخلي لحفظ تاريخ البيانات؛ لا توجد واجهة تبديل مسؤولين. حذف ملفات master-admin-reviews يزيل القسم وروابطه وصلاحياته، ويحتفظ بتقييمات العميل والوكيل. سجل الإجراءات يجمع أحداث الإدارة وactivity وsupportAudit، مع أنواع المستخدم والوكيل والتذكرة والمعاملة والدفع، ولا يولّد حدثًا مصطنعًا عند مجرد تبديل العرض.
+
+### حسابات Demo
+
+| الدور | البريد | كلمة المرور |
+| --- | --- | --- |
+| العميل | client@wakeel.test | WakeelClient@123 |
+| الوكيل | agent@wakeel.test | WakeelAgent@123 |
+| مدير المنصة | admin@wakeel.test | WakeelAdmin@123 |
+
+اضغط الحساب في صفحة الدخول لتعبئة حقوله ثم «تسجيل الدخول». كلمات المرور المعروضة بيانات Demo عامة، وليست أسرار حسابات إنتاج. demo-session.js يتحقق منها ويوجه إلى لوحة الدور. المفتاح wakeel_demo_session_v1 يحفظ الدور والمعرّف ووقت الجلسة وانتهائها فقط؛ لا يحفظ كلمة المرور. «تذكرني» يحفظ جلسة محلية سبعة أيام، وإلا تحفظ في sessionStorage لمدة 12 ساعة. تسجيل الخروج يمسح الجلسة ويسجل الحدث دون مسح بيانات المعاملات. الدخول المحلي لا ينشئ مصادقة أو حماية صلاحيات على خادم.
+
+### الهوية والاتصال
+
+البروفايل الدائري يأتي من nav.html وshared.css، ويتحدث اسم الحساب وحروفه عبر chrome-contact.js. footer.html يضم SVG مستقلة للموقع والاتصال، لتظهر الأيقونات دون الاعتماد على رمز SVG موجود في صفحة بعينها. الحركة تدعم prefers-reduced-motion.
+
+أضف روابط الشبكات الرسمية لاحقًا في shared/contact-config.js داخل social.facebook وsocial.instagram وsocial.linkedin. القيم الفارغة تعرض الأيقونات وتمنع انتقالًا إلى وجهة غير محددة. الهاتف 0777459814، والرابط tel:+962777459814، والبريد wakeeljo@gmail.com.
+
+## Shared administration and fixed service fee — 2026-10-15
+
+businessVersion:1 snapshots agentAmount, serviceFee and amount (total JOD). New accepted offers add exactly 1 JOD; calculations use integer fils. Existing paid, legacy and in-flight invoices retain their charged amount with zero retroactive fee. Unpaid current invoices receive the new fee once, without changing the accepted offer.
+
+platformRevenue() derives fees from paid, completed requests. Failed, cancelled and refunded payments earn no revenue. The Admin settled summary displays this revenue; Agent entitlements display agentAmount.
+
+adminImportVersion:1 imports prior Admin requests, offers, people and payments into wakeel_workflow_v2 once; original keys remain intact. Administrative preferences and user management remain in wakeel_admin_demo_v1. Admin request/payment views and transitions read and write the common workflow. Hiding prevents offer submission and acceptance; suspension/cancellation invalidate in-flight attempts. Resuming preserves prior financial holds; refunded requests cannot resume. Admin actions persist audit events and notify relevant parties. Storage events update already-open role tabs on the same origin.
+
+Available Agent requests use the same searchable ministry, governorate and dependent directorate catalogue as Client creation. Legacy requests without catalogue IDs match only when their directorate name resolves unambiguously.
+
+Client payment history occupies the former fee explanation card and shows the latest five results. Show-all appears only above five matching records and expands a scrollable list; search covers the entire ledger.

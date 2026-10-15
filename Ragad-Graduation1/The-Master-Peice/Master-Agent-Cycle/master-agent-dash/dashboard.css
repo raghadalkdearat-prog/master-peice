@@ -1,0 +1,6 @@
+﻿/* Dashboard extends the same Client banner and shared Agent layout. */
+.agent-app .create-banner{margin-bottom:0;gap:24px;justify-content:space-between}
+.agent-app .create-banner>div:first-child{flex:1;min-width:0}
+.agent-app .banner-visual{position:relative;inset:auto;width:125px;height:auto;min-width:125px;flex:0 0 125px;transform:none;display:flex;justify-content:center}
+@media(max-width:760px){.agent-app .banner-visual{display:none}}
+

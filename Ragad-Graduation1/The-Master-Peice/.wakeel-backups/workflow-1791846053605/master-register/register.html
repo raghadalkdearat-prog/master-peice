@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#eaf3fc">
+  <meta name="description" content="سجّل الدخول إلى وكيل لتتابع معاملاتك بسهولة، وتقارن العروض وتختار مقدم الخدمة المناسب.">
+  <title>إنشاء حساب | وكيل</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../master-login/login.css">
+  <link rel="stylesheet" href="register.css">
+</head>
+<body>
+  <div class="login-page register-page">
+    <div class="ambient ambient-one" aria-hidden="true"></div>
+    <div class="ambient ambient-two" aria-hidden="true"></div>
+
+    <!-- Header: one unified background across the entire page -->
+    <header class="page-header">
+      <a class="brand" href="../master-landing-page/landing.html" aria-label="وكيل — العودة إلى الصفحة الرئيسية">
+        <img src="../master-landing-page/assets/wakeel-mark.png" alt="" width="48" height="48">
+        <span class="brand-name">
+          <strong>وكيل</strong>
+          <small>WAKEEL</small>
+        </span>
+      </a>
+      <a class="back-home" href="../master-landing-page/landing.html">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V10Z"/><path d="M9 21v-8h6v8"/></svg>
+        <span>العودة للرئيسية</span>
+      </a>
+    </header>
+
+    <main class="page-content">
+      <div class="intro">
+        <span class="intro-label"><span class="label-dot"></span> ابدأ رحلتك مع وكيل</span>
+        <h1>خطوتك الأولى.. <span>مع وكيل</span></h1>
+        <p>انضم إلى منصة وكيل، سواء كنت تبحث عن خدمة لمتابعة معاملاتك أو ترغب بتقديم خدماتك للعملاء.</p>
+      </div>
+
+      <!-- One continuous visual canvas — no split-color sections -->
+      <div class="auth-stage">
+        <div class="visual-scene" aria-label="رسم متحرك توضيحي لخدمات وكيل">
+          <div class="visual-glow" aria-hidden="true"></div>
+          <iframe
+            class="login-lottie-frame"
+            src="https://lottie.host/embed/9f1748cf-c0db-4e84-b1a2-693c0884e627/1tC9XekUi0.lottie"
+            title="أنيميشن وكيل"
+            loading="lazy"
+            scrolling="no"
+            tabindex="-1">
+          </iframe>
+          <div class="login-lottie-reduced" aria-hidden="true">
+            <span class="reduced-icon">✓</span>
+            معاملاتك في مكان واحد
+          </div>
+          <div class="visual-caption" aria-hidden="true">
+            <span class="caption-icon">✓</span>
+            <span>من البداية حتى الإنجاز</span>
+          </div>
+        </div>
+
+        <section class="login-card register-card" aria-labelledby="register-title">
+  <div class="card-accent" aria-hidden="true"></div>
+  <div class="login-heading">
+    <span class="welcome-tag">أهلًا بك في وكيل <span aria-hidden="true">✦</span></span>
+    <h2 id="register-title">إنشاء حساب جديد</h2>
+    <p>سجّل كعميل لطلب خدمة، أو كمقدم خدمة لعرض خبرتك.</p>
+  </div>
+  <form action="#" class="login-form register-form" enctype="multipart/form-data" id="registerForm" method="post">
+<!-- Account Type -->
+<div class="account-choice">
+<input checked="" id="client" name="accountType" type="radio" value="client"/>
+<input id="agent" name="accountType" type="radio" value="agent"/>
+<div class="account-options">
+<label for="client">
+<span class="option-title">عميل</span>
+<small>أريد طلب خدمة</small>
+</label>
+<label for="agent">
+<span class="option-title">مقدم خدمة</span>
+<small>أريد تقديم خدماتي</small>
+</label>
+</div>
+<!-- Common Fields -->
+<div class="form-fields">
+<div class="form-group">
+<label for="fullName">الاسم الكامل</label>
+<input autocomplete="name" id="fullName" name="fullName" placeholder="أدخل اسمك الكامل" required="" type="text"/>
+</div>
+<div class="form-row">
+<div class="form-group">
+<label for="email">البريد الإلكتروني</label>
+<input autocomplete="email" id="email" name="email" placeholder="example@email.com" required="" type="email"/>
+</div>
+<div class="form-group">
+<label for="phone">رقم الهاتف</label>
+<input autocomplete="tel" id="phone" name="phone" pattern="07[0-9]{8}" placeholder="07XXXXXXXX" required="" title="أدخل رقم هاتف أردني من 10 أرقام يبدأ بـ 07" type="tel"/>
+</div>
+</div>
+<div class="form-group">
+<label for="city">المحافظة</label>
+<select id="city" name="city" required="">
+<option value="">اختر المحافظة</option>
+<option value="amman">عمان</option>
+<option value="irbid">إربد</option>
+<option value="zarqa">الزرقاء</option>
+<option value="balqa">البلقاء</option>
+<option value="ajloun">عجلون</option>
+<option value="jerash">جرش</option>
+<option value="mafraq">المفرق</option>
+<option value="karak">الكرك</option>
+<option value="tafilah">الطفيلة</option>
+<option value="maan">معان</option>
+<option value="aqaba">العقبة</option>
+<option value="madaba">مادبا</option>
+</select>
+</div>
+
+<!-- Password -->
+<div class="form-row">
+<div class="form-group">
+<label for="password">كلمة المرور</label>
+<div class="input-wrap password-wrap"><input autocomplete="new-password" id="password" minlength="8" name="password" placeholder="8 أحرف على الأقل" required="" type="password"/><button type="button" class="show-password" data-for="password" aria-label="إظهار كلمة المرور" aria-pressed="false" title="إظهار أو إخفاء كلمة المرور">◉</button></div>
+</div>
+<div class="form-group">
+<label for="confirmPassword">تأكيد كلمة المرور</label>
+<div class="input-wrap password-wrap"><input autocomplete="new-password" id="confirmPassword" minlength="8" name="confirmPassword" placeholder="أعد إدخال كلمة المرور" required="" type="password"/><button type="button" class="show-password" data-for="confirmPassword" aria-label="إظهار كلمة المرور" aria-pressed="false" title="إظهار أو إخفاء كلمة المرور">◉</button></div>
+</div>
+</div>
+<!-- Terms -->
+<label class="terms">
+<input name="terms" required="" type="checkbox"/>
+<span>
+                  أوافق على
+                  <a aria-disabled="true" href="#" title="هذه الصفحة غير متوفرة في النسخة التجريبية">الشروط والأحكام</a>
+                  و
+                  <a aria-disabled="true" href="#" title="هذه الصفحة غير متوفرة في النسخة التجريبية">سياسة الخصوصية</a>
+</span>
+</label>
+<!-- Submit -->
+<button class="register-btn login-btn" type="submit">
+                إنشاء الحساب ←
+              </button>
+</div>
+</div>
+</form>
+  <p class="form-message" id="registrationMessage" role="status" aria-live="polite"></p>
+  <div class="register-link"><span>لديك حساب بالفعل؟</span><a href="../master-login/login.html">تسجيل الدخول ←</a></div>
+</section>
+      </div>
+    </main>
+
+    <footer class="page-footer">
+      <span>© وكيل — منصة مستقلة لتسهيل الوصول إلى مقدمي الخدمات</span>
+      <span class="footer-dot" aria-hidden="true"></span>
+      <span>تجربة أكثر وضوحًا، من البداية حتى الإنجاز</span>
+    </footer>
+  </div>
+
+  <script src="register.js"></script>
+   
+</body>
+</html>

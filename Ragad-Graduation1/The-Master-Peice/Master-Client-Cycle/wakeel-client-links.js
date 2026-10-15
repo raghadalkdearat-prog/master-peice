@@ -1,0 +1,13 @@
+/* One navigation definition for every Client page. */
+(() => {"use strict";const D=WakeelData;
+const main=[["dashboard","لوحة التحكم","master-client-dash/client-dash.html","i-grid"],["posted","المعاملات المطروحة","master-posted-requests/posted-requests.html","i-file"],["requests","معاملاتي","master-my-requests/my-requests.html","i-file"],["create","إنشاء معاملة","master-creat-request/creat-request.html","i-plus"],["payments","المدفوعات","master-payments/payments.html","i-wallet"],["notifications","الإشعارات","master-notifications/notifications.html","i-bell"]];
+const account=[["profile","الملف الشخصي","master-profile-settings/profile.html","i-user"],["reviews","تقييماتي","master-Reviews/reviews.html","i-wf-star"],["support","المساعدة والدعم","master-Support-Help/support.html","i-help"]];
+function links(){const path=location.pathname;const groups=[main,account],navs=document.querySelectorAll(".sidebar .side-nav");
+if(!document.getElementById("i-wf-star")){const sprite=document.createElementNS("http://www.w3.org/2000/svg","svg");sprite.setAttribute("aria-hidden","true");sprite.setAttribute("style","position:absolute;width:0;height:0;overflow:hidden");sprite.innerHTML='<symbol id="i-wf-star" viewBox="0 0 24 24"><path d="m12 3 2.8 5.7 6.3.9-4.6 4.5 1.1 6.3-5.6-3-5.6 3 1.1-6.3-4.6-4.5 6.3-.9Z"/></symbol>';document.body.append(sprite);}
+navs.forEach((nav,i)=>{if(i>1)return;nav.innerHTML=groups[i].map(([key,text,tail,icon])=>'<a class="nav-item'+(path.endsWith("/"+tail)?' current':'')+'" data-nav="'+key+'" href="../'+tail+'"'+(path.endsWith("/"+tail)?' aria-current="page"':'')+'><svg aria-hidden="true"><use href="#'+icon+'"></use></svg>'+text+'</a>').join("");});
+const mobile=document.querySelector("#shared-navbar .mobile-navigation-panel");if(mobile){mobile.querySelectorAll('a[href*="Master-Client-Cycle"],a[href^="../master-"],a[data-client-nav]').forEach(a=>a.remove());for(const [key,text,tail]of [...main,...account]){const a=document.createElement("a");a.dataset.clientNav=key;a.href="../"+tail;a.textContent=text;if(path.endsWith("/"+tail))a.setAttribute("aria-current","page");a.addEventListener("click",()=>{const menu=mobile.closest("details");if(menu)menu.open=false;});mobile.append(a);}}
+document.querySelectorAll("#shared-navbar .nav-user span").forEach(el=>el.textContent=D.profile("client").fullName);
+document.querySelectorAll('a[href="request-details.html"],a[href^="request-details.html?"],a[href="my-requests.html"]').forEach(a=>{const href=a.getAttribute("href");a.setAttribute("href",href.startsWith("request-details")?"../master-request-details/"+href:"../master-my-requests/"+href);});
+}
+window.addEventListener("wakeel:change",links);document.addEventListener("wakeel:shared-ready",links);links();
+})();

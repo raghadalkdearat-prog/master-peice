@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+
+<html dir="rtl" lang="ar">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="#163A5F" name="theme-color"/>
+<meta content="وكيل منصة تربط أصحاب المعاملات بمقدمي الخدمات. انشر طلبك، قارن العروض، وتابع الإنجاز خطوة بخطوة." name="description"/>
+<title>وكيل | Wakeel — معاملتك أسهل</title>
+<link href="assets/wakeel-mark.png" rel="icon" type="image/png"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700amp;family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="landing.css" rel="stylesheet"/>
+<link href="wakeel-cinematic.css" rel="stylesheet"/>
+<script defer="" src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script defer="" src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script defer="" src="landing.js"></script>
+</head>
+<body class="wk-cinematic">
+<!-- Cinematic scroll progress — decorative only -->
+<div class="wk-scroll-progress" aria-hidden="true"><span></span></div>
+<!-- Local icon sprite: no JavaScript required. -->
+<svg aria-hidden="true" class="svg-sprite" xmlns="http://www.w3.org/2000/svg">
+<symbol id="i-arrow" viewbox="0 0 24 24"><path d="m19 12-14 0m6 6-6-6 6-6"></path></symbol>
+<symbol id="i-arrow-down" viewbox="0 0 24 24"><path d="M12 4v16m-6-6 6 6 6-6"></path></symbol>
+<symbol id="i-plus" viewbox="0 0 24 24"><path d="M12 5v14M5 12h14"></path></symbol>
+<symbol id="i-chevron" viewbox="0 0 24 24"><path d="m9 18 6-6-6-6"></path></symbol>
+<symbol id="i-globe" viewbox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="M3 12h18M12 3a16 16 0 0 1 0 18M12 3a16 16 0 0 0 0 18"></path></symbol>
+<symbol id="i-menu" viewbox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"></path></symbol>
+<symbol id="i-file" viewbox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8zM14 2v6h6M8 13h8M8 17h8"></path></symbol>
+<symbol id="i-file-plus" viewbox="0 0 24 24"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9zM13 2v7h7M12 12v7M8.5 15.5h7"></path></symbol>
+<symbol id="i-mail" viewbox="0 0 24 24"><rect height="14" rx="2" width="18" x="3" y="5"></rect><path d="m3 7 9 7 9-7"></path></symbol>
+<symbol id="i-user" viewbox="0 0 24 24"><circle cx="12" cy="8" r="4"></circle><path d="M4 21a8 8 0 0 1 16 0"></path></symbol>
+<symbol id="i-users" viewbox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"></path></symbol>
+<symbol id="i-check" viewbox="0 0 24 24"><path d="m5 12 4 4L19 6"></path></symbol>
+<symbol id="i-check-circle" viewbox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="m8 12 3 3 5-6"></path></symbol>
+<symbol id="i-shield" viewbox="0 0 24 24"><path d="m12 22 7-4V6l-7-4-7 4v12z"></path><path d="m9 12 2 2 4-4"></path></symbol>
+<symbol id="i-clock" viewbox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></symbol>
+<symbol id="i-pin" viewbox="0 0 24 24"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0z"></path><circle cx="12" cy="10" r="2.5"></circle></symbol>
+<symbol id="i-store" viewbox="0 0 24 24"><path d="m3 9 2-6h14l2 6v3a3 3 0 0 1-6 0 3 3 0 0 1-6 0 3 3 0 0 1-6 0zM5 15v6h14v-6M9 21v-6h6v6"></path></symbol>
+<symbol id="i-landmark" viewbox="0 0 24 24"><path d="m3 9 9-6 9 6zM4 21h16M6 19v-9M10 19v-9M14 19v-9M18 19v-9"></path></symbol>
+<symbol id="i-building" viewbox="0 0 24 24"><rect height="20" rx="1" width="16" x="4" y="2"></rect><path d="M9 7h1M14 7h1M9 12h1M14 12h1M9 17h1M14 17h1M10 22v-3h4v3"></path></symbol>
+<symbol id="i-scale" viewbox="0 0 24 24"><path d="M12 3v18M5 6h14M3 20h18M4 14l3-7 3 7zM14 14l3-7 3 7z"></path></symbol>
+<symbol id="i-folder" viewbox="0 0 24 24"><path d="M3 7V5a2 2 0 0 1 2-2h5l2 3h7a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></symbol>
+<symbol id="i-grid" viewbox="0 0 24 24"><rect height="7" rx="1" width="7" x="3" y="3"></rect><rect height="7" rx="1" width="7" x="14" y="3"></rect><rect height="7" rx="1" width="7" x="3" y="14"></rect><rect height="7" rx="1" width="7" x="14" y="14"></rect></symbol>
+<symbol id="i-sparkles" viewbox="0 0 24 24"><path d="m12 3 1.7 5.3L19 10l-5.3 1.7L12 17l-1.7-5.3L5 10l5.3-1.7zM19 17l.7 2.3L22 20l-2.3.7L19 23l-.7-2.3L16 20l2.3-.7zM3 3l.5 1.5L5 5l-1.5.5L3 7l-.5-1.5L1 5l1.5-.5z"></path></symbol>
+<symbol id="i-message" viewbox="0 0 24 24"><path d="M21 11a8 8 0 0 1-8 8H5l-3 3v-9a8 8 0 0 1 8-8h3a8 8 0 0 1 8 6zM8 12h8M8 15h5"></path></symbol>
+<symbol id="i-bell" viewbox="0 0 24 24"><path d="M18 8a6 6 0 0 0-12 0c0 8-3 8-3 10h18c0-2-3-2-3-10M10 22h4"></path></symbol>
+<symbol id="i-wallet" viewbox="0 0 24 24"><rect height="16" rx="3" width="18" x="3" y="5"></rect><path d="M3 9h18M15 15h4"></path></symbol>
+<symbol id="i-star" viewbox="0 0 24 24"><path d="m12 2 3 6.6 7.2.8-5.4 5 1.5 7L12 18l-6.3 3.4 1.5-7-5.4-5 7.2-.8z"></path></symbol>
+<symbol id="i-chart" viewbox="0 0 24 24"><path d="M4 20V4M4 20h17M8 17v-4M13 17V8M18 17V5"></path></symbol>
+<symbol id="i-play" viewbox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="m10 8 6 4-6 4z"></path></symbol>
+<symbol id="i-instagram" viewbox="0 0 24 24"><rect height="18" rx="5" width="18" x="3" y="3"></rect><circle cx="12" cy="12" r="4"></circle><path d="M17.5 6.5h.01"></path></symbol>
+<symbol id="i-linkedin" viewbox="0 0 24 24"><rect height="18" rx="2" width="18" x="3" y="3"></rect><path d="M8 10v7M8 7v.01M12 17v-7M12 13a3 3 0 0 1 6 0v4"></path></symbol>
+<symbol id="i-facebook" viewbox="0 0 24 24"><path d="M15 21v-8h3l.5-4H15V7c0-1 .4-1.6 2-1.6h2V2h-3c-3.5 0-5 2-5 5v2H8v4h3v8"></path></symbol>
+<symbol id="i-alert" viewbox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v6M12 17v.1"></path></symbol>
+</svg>
+<a class="skip-link" href="#main">تجاوز القائمة إلى المحتوى</a>
+<!-- NAVBAR -->
+<header class="site-header" id="top">
+<nav aria-label="القائمة الرئيسية" class="nav-shell container">
+<a aria-label="وكيل — الصفحة الرئيسية" class="brand" href="#top">
+<img alt="" height="48" src="assets/wakeel-mark.png" width="38"/>
+<span class="brand-word"><strong>وكيل</strong><span class="brand-divider">|</span><b lang="en">WAKEEL</b></span>
+</a>
+<div class="nav-links">
+<a class="active" href="#top">الرئيسية</a><a href="#services">الخدمات</a><a href="#how">كيف يعمل؟</a><a href="#agents">للوكلاء</a><a href="#faq">الأسئلة الشائعة</a>
+</div>
+<div class="nav-actions">
+<a class="btn btn-outline btn-sm" href="../master-login/login.html">تسجيل الدخول</a>
+<a class="btn btn-primary btn-sm" href="../master-register/register.html"><svg class="icon"><use href="#i-plus"></use></svg>التسجيل</a>
+</div>
+<details class="mobile-navigation"><summary aria-label="فتح القائمة"><svg class="icon"><use href="#i-menu"></use></svg></summary>
+<div class="mobile-navigation-panel"><a href="#top">الرئيسية</a><a href="#services">الخدمات</a><a href="#how">كيف يعمل؟</a><a href="#ai">المساعد الذكي</a><a href="#agents">للوكلاء</a><a href="#faq">الأسئلة الشائعة</a><a href="../master-login/login.html">تسجيل الدخول</a><a class="mobile-nav-cta" href="../master-register/register.html">التسجيل</a></div>
+</details>
+</nav>
+</header>
+<main id="main">
+<!-- HERO — video is optional, poster/backdrop works without it -->
+<section class="hero wk-section" aria-labelledby="hero-heading">
+  <video
+    class="hero-video"
+    autoplay
+    muted
+    loop
+    playsinline
+    poster="assets/amman-night.webp"
+    aria-hidden="true"
+  >
+    <source src="assets/background.mp4" type="video/mp4" />
+  </video>
+
+<div class="wk-scene wk-scene--hero" aria-hidden="true">
+  <span class="wk-orb wk-orb--a"></span>
+  <span class="wk-orb wk-orb--b"></span>
+  <span class="wk-hero-halo wk-hero-halo--one"></span>
+  <span class="wk-hero-halo wk-hero-halo--two"></span>
+  <span class="wk-hero-gridlines"></span>
+  <span class="wk-hero-noise"></span>
+  <span class="wk-hero-spark" style="--x:11%;--y:24%;--delay:0s"></span>
+  <span class="wk-hero-spark" style="--x:27%;--y:65%;--delay:2s"></span>
+  <span class="wk-hero-spark" style="--x:48%;--y:18%;--delay:4s"></span>
+  <span class="wk-hero-spark" style="--x:84%;--y:34%;--delay:1s"></span>
+  <span class="wk-hero-spark" style="--x:73%;--y:78%;--delay:3s"></span>
+</div>
+  <div class="hero-overlay" aria-hidden="true"></div>
+  <div class="hero-glow" aria-hidden="true"></div>
+
+  <div class="container hero-grid">
+    <div class="hero-copy">
+      <span class="wk-eyebrow eyebrow eyebrow-on-dark">
+        <span class="dot-pulse"></span>
+        رحلة معاملتك في مكان واحد
+      </span>
+
+      <h1 class="wk-title" id="hero-heading">
+        أنجز معاملاتك<br />
+        <span>بخطوات أوضح.</span>
+      </h1>
+
+      <p class="wk-text">
+        اكتب ما تحتاجه، واستقبل عروضًا من مقدمي الخدمات، ثم قارن وتابع التنفيذ
+        خطوة بخطوة مع وكيل.
+      </p>
+
+      <div class="hero-buttons">
+        <a class="wk-btn btn btn-primary" href="#start">
+          ابدأ طلبك الآن
+          <svg class="icon"><use href="#i-arrow"></use></svg>
+        </a>
+
+        <a class="wk-btn btn btn-glass" href="#how">
+          كيف يعمل وكيل؟
+          <svg class="icon"><use href="#i-play"></use></svg>
+        </a>
+      </div>
+
+      <div class="hero-highlights" aria-label="رحلة معاملتك">
+        <div>
+          <svg class="icon"><use href="#i-file-plus"></use></svg>
+          <span>طلبك</span>
+        </div>
+        <div>
+          <svg class="icon"><use href="#i-users"></use></svg>
+          <span>عروض مناسبة</span>
+        </div>
+        <div>
+          <svg class="icon"><use href="#i-check-circle"></use></svg>
+          <span>إنجاز ومتابعة</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-visual wk-visual process-visual"
+         aria-label="خطوات إنجاز المعاملة عبر وكيل">
+      <div class="process-panel wk-lift-panel">
+        <div class="process-panel-heading">
+          <span class="process-panel-icon">
+            <svg class="icon"><use href="#i-sparkles"></use></svg>
+          </span>
+
+          <span class="process-panel-title">
+            <small>تجربة منظمة</small>
+            <strong>من الطلب إلى الإنجاز</strong>
+          </span>
+
+          <span class="process-panel-status">
+            <i></i>
+            عبر وكيل
+          </span>
+        </div>
+
+        <div class="transaction-flow">
+          <div class="flow-step">
+            <span class="flow-icon">
+              <svg class="icon"><use href="#i-file-plus"></use></svg>
+            </span>
+            <span class="flow-copy">
+              <small>الخطوة الأولى</small>
+              <strong>صف معاملتك</strong>
+              <em>أرسل طلبك وتفاصيله</em>
+            </span>
+            <b>01</b>
+          </div>
+
+          <span class="flow-connector" aria-hidden="true"></span>
+
+          <div class="flow-step">
+            <span class="flow-icon">
+              <svg class="icon"><use href="#i-users"></use></svg>
+            </span>
+            <span class="flow-copy">
+              <small>الخطوة الثانية</small>
+              <strong>قارن العروض</strong>
+              <em>اختر مقدم الخدمة الأنسب</em>
+            </span>
+            <b>02</b>
+          </div>
+
+          <span class="flow-connector" aria-hidden="true"></span>
+
+          <div class="flow-step flow-step-complete">
+            <span class="flow-icon">
+              <svg class="icon"><use href="#i-check-circle"></use></svg>
+            </span>
+            <span class="flow-copy">
+              <small>الخطوة الثالثة</small>
+              <strong>تابع حتى الإنجاز</strong>
+              <em>كل التحديثات في مكان واحد</em>
+            </span>
+            <b>03</b>
+          </div>
+        </div>
+
+        <div class="process-panel-footer">
+          <svg class="icon"><use href="#i-shield"></use></svg>
+          تواصل ومتابعة أوضح طوال رحلة معاملتك
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <a href="#how" class="scroll-hint">
+    <svg class="icon"><use href="#i-arrow-down"></use></svg>
+    اكتشف كيف يعمل وكيل
+  </a>
+</section>
+<!-- CATEGORIES -->
+<section aria-labelledby="services-title" class="section services-section" id="services">
+<div class="wk-scene wk-scene--services" aria-hidden="true"><span class="wk-orb wk-orb--a"></span><span class="wk-orb wk-orb--b"></span><span class="wk-scene-mesh"></span><span class="wk-scene-glyph wk-glyph-services">✳</span></div>
+<div class="container"><div class="section-heading centered wk-section-heading"><span class="overline">مجموعة خدمات في مكان واحد</span><h2 id="services-title">تصفّح فئات <span>الخدمات</span></h2><p>استكشف أنواع المعاملات التي يمكن طلب متابعتها عبر المنصة.</p></div>
+<div class="services-grid">
+<a class="service-card" href="../Master-Client-Cycle/master-creat-request/creat-request.html"><span class="service-icon"><svg class="icon"><use href="#i-store"></use></svg></span><h3>تراخيص المهن والأنشطة</h3><span>اطلب الخدمة <svg class="icon"><use href="#i-arrow"></use></svg></span></a>
+<a class="service-card" href="../Master-Client-Cycle/master-creat-request/creat-request.html"><span class="service-icon"><svg class="icon"><use href="#i-landmark"></use></svg></span><h3>المعاملات الحكومية</h3><span>اطلب الخدمة <svg class="icon"><use href="#i-arrow"></use></svg></span></a>
+<a class="service-card" href="../Master-Client-Cycle/master-creat-request/creat-request.html"><span class="service-icon"><svg class="icon"><use href="#i-building"></use></svg></span><h3>الشركات والسجلات</h3><span>اطلب الخدمة <svg class="icon"><use href="#i-arrow"></use></svg></span></a>
+<a class="service-card" href="../Master-Client-Cycle/master-creat-request/creat-request.html"><span class="service-icon"><svg class="icon"><use href="#i-scale"></use></svg></span><h3>المعاملات القانونية والإدارية</h3><span>اطلب الخدمة <svg class="icon"><use href="#i-arrow"></use></svg></span></a>
+<a class="service-card" href="../Master-Client-Cycle/master-creat-request/creat-request.html"><span class="service-icon"><svg class="icon"><use href="#i-file"></use></svg></span><h3>الوثائق والشهادات</h3><span>اطلب الخدمة <svg class="icon"><use href="#i-arrow"></use></svg></span></a>
+<a class="service-card" href="../Master-Client-Cycle/master-creat-request/creat-request.html"><span class="service-icon"><svg class="icon"><use href="#i-grid"></use></svg></span><h3>خدمات أخرى</h3><span>اطلب الخدمة <svg class="icon"><use href="#i-arrow"></use></svg></span></a>
+</div>
+</div></section>
+<!-- HOW IT WORKS -->
+<section aria-labelledby="how-title" class="section how-section" id="how">
+<div class="wk-scene wk-scene--how" aria-hidden="true"><span class="wk-orb wk-orb--a"></span><span class="wk-orb wk-orb--b"></span><span class="wk-scene-path"></span><span class="wk-scene-glyph wk-glyph-how">04</span></div>
+
+<div class="container"><div class="section-heading centered wk-section-heading"><span class="overline">بداية سهلة وخطوات واضحة</span><h2 id="how-title">كيف يعمل <span>وكيل؟</span></h2><p>من بداية طلبك حتى اكتمال المعاملة، كل شيء مرتب في أربع خطوات.</p></div>
+<div class="steps-grid">
+<svg aria-hidden="true" class="workflow-progress"><path class="workflow-line-track"></path><path class="workflow-line-active"></path></svg>
+<article class="step-card"><span class="step-number">01</span><span class="step-icon"><svg class="icon"><use href="#i-file-plus"></use></svg></span><h3>سجّل طلبك</h3><p>اكتب تفاصيل معاملتك وارفق المستندات المطلوبة.</p></article>
+<article class="step-card"><span class="step-number">02</span><span class="step-icon"><svg class="icon"><use href="#i-mail"></use></svg></span><h3>استقبل العروض</h3><p>تصفح عروض مقدمي الخدمة والأسعار والمدد المتوقعة.</p></article>
+<article class="step-card"><span class="step-number">03</span><span class="step-icon"><svg class="icon"><use href="#i-user"></use></svg></span><h3>اختر الأنسب</h3><p>قارن ملفات مقدمي الخدمة وتقييماتهم قبل الاختيار.</p></article>
+<article class="step-card"><span class="step-number">04</span><span class="step-icon"><svg class="icon"><use href="#i-check-circle"></use></svg></span><h3>تابع حتى الإنجاز</h3><p>تابع التطورات وتواصل مباشرة حتى انتهاء العمل.</p></article>
+</div>
+</div>
+</section>
+<!-- AI SMART REQUEST -->
+<section aria-labelledby="ai-title" class="section ai-section" id="ai">
+<div class="wk-scene wk-scene--ai" aria-hidden="true"><span class="wk-orb wk-orb--a"></span><span class="wk-orb wk-orb--b"></span><span class="wk-scene-stars"></span></div>
+<div class="container split-grid ai-grid"><div class="ai-copy"><span class="eyebrow eyebrow-on-dark"><svg class="icon"><use href="#i-sparkles"></use></svg> مساعد وكيل الذكي</span><h2 id="ai-title">حوّل طلبك إلى تفاصيل دقيقة <span>بالذكاء الاصطناعي</span></h2><p>بدل تعبئة الحقول واحدًا واحدًا، اكتب طلبك بطريقتك. سيساعدك المساعد الذكي في تنظيم تفاصيل المعاملة لتراجعها قبل النشر.</p><a class="btn btn-primary" href="../Master-Client-Cycle/master-creat-request/creat-request.html">استكشف التجربة <svg class="icon"><use href="#i-arrow"></use></svg></a><span class="prototype-label">* مثال بصري للميزة المخطط تنفيذها لاحقًا</span></div>
+<div class="ai-stage ai-video-stage">
+<img class="wk-ai-poster" src="assets/ai-video-poster.jpg" alt="" aria-hidden="true" loading="lazy" />
+<video aria-hidden="true" autoplay="" class="ai-feature-video" loop="" muted="" playsinline="" poster="assets/ai-video-poster.jpg" preload="metadata">
+<source src="assets/ai-robot-video.mp4" type="video/mp4"/>
+</video>
+</div>
+</div></section>
+<!-- TRACKING -->
+<section aria-labelledby="tracking-title" class="section tracking-section" id="tracking">
+<div class="wk-scene wk-scene--tracking" aria-hidden="true"><span class="wk-orb wk-orb--a"></span><span class="wk-orb wk-orb--b"></span><span class="wk-scene-pulse"></span><span class="wk-scene-glyph wk-glyph-tracking">↗</span></div>
+<div class="container split-grid tracking-grid"><div class="tracking-copy"><span class="overline">شفافية في كل خطوة</span><h2 id="tracking-title">تابع معاملاتك <span>في كل خطوة</span></h2><p>اطلع على حالة المعاملة، وتبادل الرسائل والمستندات مع مقدم الخدمة، واعرف آخر التحديثات من مكان واحد.</p><div class="mini-features"><div><span><svg class="icon"><use href="#i-bell"></use></svg></span><b>تحديثات واضحة</b><small>اعرف ما يستجد</small></div><div><span><svg class="icon"><use href="#i-message"></use></svg></span><b>محادثة مباشرة</b><small>تواصل داخل الطلب</small></div><div><span><svg class="icon"><use href="#i-folder"></use></svg></span><b>إدارة المستندات</b><small>ملفاتك في مكان واحد</small></div></div></div>
+<div aria-label="عرض توضيحي متحرك لمراحل طلب افتراضي" class="dashboard tracking-dashboard wk-lift-panel"><aside class="dashboard-side"><div class="mini-brand"><img alt="" src="assets/wakeel-mark.png"/> <span>وكيل</span></div><span class="dash-menu"><svg class="icon"><use href="#i-grid"></use></svg> الرئيسية</span><span class="dash-menu on"><svg class="icon"><use href="#i-file"></use></svg> معاملاتي</span><span class="dash-menu"><svg class="icon"><use href="#i-message"></use></svg> المحادثات</span><span class="dash-menu"><svg class="icon"><use href="#i-folder"></use></svg> المستندات</span></aside><div class="dashboard-content"><div class="dash-header"><div><small>معاملة رقم #WK-10231</small><h3>تجديد رخصة مهن — إربد</h3></div><span class="pill pill-blue">قيد التنفيذ</span></div><div class="dashboard-journey"><div class="complete"><span>✓</span><small>طلب جديد</small></div><div class="complete"><span>✓</span><small>تم قبول العرض</small></div><div class="current"><span>3</span><small>قيد التنفيذ</small></div><div><span>4</span><small>الإنجاز</small></div></div><div class="dash-tabs"><span class="chosen">المحادثة</span><span>المستندات</span><span>التفاصيل</span></div><div class="chat-preview"><span class="chat-avatar">أ</span><div><strong>أحمد خالد <small>مقدم الخدمة</small></strong><p>تم استلام المستندات المطلوبة، وسأوافيك بأي تحديث جديد خلال متابعة المعاملة.</p><small>اليوم، 10:24 ص</small></div></div><div class="chat-reply">شكرًا لك، بانتظار التحديث. <span>✓✓</span></div></div></div>
+</div></section>
+<!-- WHY WAKEEL -->
+<section aria-labelledby="why-title" class="section why-section" id="why">
+<div class="wk-scene wk-scene--why" aria-hidden="true"><span class="wk-orb wk-orb--a"></span><span class="wk-orb wk-orb--b"></span><span class="wk-scene-shield"></span></div>
+<div class="container"><div class="section-heading centered wk-section-heading"><span class="overline">تجربة أبسط وأوضح</span><h2 id="why-title">لماذا <span>وكيل؟</span></h2><p>الأدوات التي تحتاجها لاتخاذ قرار مناسب ومتابعة معاملتك بثقة.</p></div><div class="benefits-grid">
+<article class="benefit-card"><span class="benefit-icon teal"><svg class="icon"><use href="#i-shield"></use></svg></span><h3>حسابات مقدمي خدمة مراجَعة</h3><p>تراجع إدارة وكيل حساب مقدم الخدمة قبل منحه حالة الاعتماد داخل المنصة.</p></article>
+<article class="benefit-card"><span class="benefit-icon"><svg class="icon"><use href="#i-wallet"></use></svg></span><h3>عروض واضحة ومقارنة سهلة</h3><p>اطلع على السعر والمدة والتقييمات، واختر العرض الأنسب قبل البدء.</p></article>
+<article class="benefit-card"><span class="benefit-icon"><svg class="icon"><use href="#i-chart"></use></svg></span><h3>متابعة كاملة للمعاملة</h3><p>خط زمني واضح، محادثات، ومستندات مرتبطة بالطلب نفسه.</p></article>
+<article class="benefit-card"><span class="benefit-icon"><svg class="icon"><use href="#i-landmark"></use></svg></span><h3>منصة مستقلة</h3><p>وكيل منصة مستقلة وليست جهة حكومية، ولا يمثل اعتمادها ترخيصًا حكوميًا.</p></article>
+</div><div class="trust-note"><svg class="icon"><use href="#i-alert"></use></svg><span>خطة الدفع: سيكون الدفع عبر المنصة عند اكتمال الربط المالي مستقبلًا. النسخة الحالية لا تعالج مدفوعات حقيقية.</span></div></div></section>
+<!-- AGENTS -->
+<section aria-labelledby="agents-title" class="section agents-section" id="agents">
+<div class="wk-scene wk-scene--agents" aria-hidden="true"><span class="wk-orb wk-orb--a"></span><span class="wk-orb wk-orb--b"></span><span class="wk-scene-mesh"></span><span class="wk-scene-glyph wk-glyph-agents">✦</span></div>
+<div class="container split-grid agent-grid"><div class="agent-copy"><span class="overline">للوكلاء ومقدمي الخدمات</span><h2 id="agents-title">انضم إلى <span>شبكة وكيل</span></h2><p>استكشف الطلبات المناسبة لتخصصك، قدّم عروضك، ونظّم عملك من لوحة تحكم واحدة.</p><ul class="check-list"><li><svg class="icon"><use href="#i-check-circle"></use></svg> الاطلاع على الطلبات المتاحة</li><li><svg class="icon"><use href="#i-check-circle"></use></svg> إدارة العروض والمعاملات</li><li><svg class="icon"><use href="#i-check-circle"></use></svg> متابعة السمعة والتقييمات</li><li><svg class="icon"><use href="#i-check-circle"></use></svg> التسجيل يخضع لموافقة إدارة المنصة</li></ul><a class="btn btn-primary" href="../Master-Client-Cycle/master-creat-request/creat-request.html">سجّل كمقدم خدمة <svg class="icon"><use href="#i-arrow"></use></svg></a></div>
+<div class="dashboard agent-dashboard wk-lift-panel"><div class="dashboard-side agent-side"><div class="mini-brand"><img alt="" src="assets/wakeel-mark.png"/><span>وكيل</span></div><span class="dash-menu on"><svg class="icon"><use href="#i-grid"></use></svg> الرئيسية</span><span class="dash-menu"><svg class="icon"><use href="#i-file"></use></svg> الطلبات</span><span class="dash-menu"><svg class="icon"><use href="#i-mail"></use></svg> عروضي</span><span class="dash-menu"><svg class="icon"><use href="#i-star"></use></svg> التقييمات</span></div><div class="dashboard-content"><div class="dash-header"><div><small>لوحة تحكم مقدم الخدمة · مثال توضيحي</small><h3>مرحبًا أحمد، 👋</h3></div><span class="pill pill-teal">حساب معتمد</span></div><div class="agent-stats"><div><small>الطلبات المتاحة</small><strong>12</strong><svg class="icon"><use href="#i-file"></use></svg></div><div><small>عروضي</small><strong>08</strong><svg class="icon"><use href="#i-mail"></use></svg></div><div><small>المكتملة</small><strong>24</strong><svg class="icon"><use href="#i-check-circle"></use></svg></div></div><div class="agent-bottom"><div class="agent-rating"><small>تقييمك العام</small><strong>4.8 <span>★★★★★</span></strong><small>مثال لواجهة التقييم</small></div><div class="bar-chart"><small>نشاط المعاملات</small><div class="bars"><i style="--bar:30%"></i><i style="--bar:45%"></i><i style="--bar:39%"></i><i style="--bar:65%"></i><i style="--bar:77%"></i><i style="--bar:96%"></i></div></div></div></div></div></div></section>
+<!-- FAQ: native HTML details, works without JS -->
+<section aria-labelledby="faq-title" class="section faq-section" id="faq">
+<div class="wk-scene wk-scene--faq" aria-hidden="true"><span class="wk-orb wk-orb--a"></span><span class="wk-scene-rings"></span><span class="wk-scene-glyph wk-glyph-faq">؟</span></div>
+<div class="container split-grid faq-grid"><div class="faq-copy"><span class="overline">هل لديك استفسار؟</span><h2 id="faq-title">الأسئلة <span>الشائعة</span></h2><p>إجابات سريعة عن أكثر الأسئلة تكرارًا حول طريقة عمل وكيل.</p><div class="faq-help"><svg class="icon"><use href="#i-message"></use></svg><span>لم تجد الإجابة التي تبحث عنها؟<br/><a href="#footer">تعرّف على قنوات التواصل</a></span></div></div><div class="faq-list"><details><summary>هل منصة وكيل جهة حكومية؟<span class="faq-plus">+</span></summary><p>لا، وكيل منصة مستقلة تربط العملاء بمقدمي خدمات متابعة المعاملات، ولا تمثل جهة حكومية.</p></details><details><summary>كيف يتم اعتماد مقدمي الخدمة؟<span class="faq-plus">+</span></summary><p>تراجع إدارة منصة وكيل حسابات مقدمي الخدمة قبل اعتمادها. الاعتماد خاص بالمنصة ولا يمثل اعتمادًا حكوميًا.</p></details><details><summary>هل يمكنني متابعة معاملتي بعد اختيار العرض؟<span class="faq-plus">+</span></summary><p>نعم، ستتمكن من متابعة مراحل المعاملة عبر الخط الزمني والمحادثة والملفات داخل صفحة الطلب.</p></details><details><summary>كيف سيتم الدفع مقابل الخدمة؟<span class="faq-plus">+</span></summary><p>نموذج المشروع يعتمد الدفع عبر منصة وكيل، لكن ربط البنوك وبوابات الدفع الحقيقية مؤجل إلى مرحلة لاحقة.</p></details><details><summary>هل يمكنني إلغاء الطلب؟<span class="faq-plus">+</span></summary><p>يمكن إلغاء الطلب قبل قبول أحد العروض. بعد بدء التنفيذ ستكون هناك سياسة واضحة للإلغاء والنزاعات.</p></details></div></div></section>
+<!-- FINAL CTA -->
+<section aria-labelledby="start-title" class="final-cta" id="start">
+<div class="wk-scene wk-scene--start" aria-hidden="true"><span class="wk-orb wk-orb--a"></span><span class="wk-orb wk-orb--b"></span><span class="wk-scene-mesh"></span></div>
+<div class="container final-cta-inner"><span class="eyebrow eyebrow-on-dark">خطوتك الجاية تبدأ من هون</span><h2 id="start-title">ابدأ الآن مع <span>وكيل</span></h2><p>سواء كنت تحتاج من يتابع معاملتك، أو ترغب في تقديم خدماتك، وكيل يجمع الطرفين في مكان واحد.</p><div class="cta-buttons"><a class="btn btn-primary" href="#how">تعرّف على رحلة العميل <svg class="icon"><use href="#i-arrow"></use></svg></a><a class="btn btn-glass" href="#agents">اكتشف مزايا مقدم الخدمة</a></div><small>هذه واجهة الـLanding Page؛ صفحات الحسابات ونشر الطلبات ستكون جزءًا من مراحل التطوير التالية.</small></div></section>
+</main>
+<!-- FOOTER -->
+<footer class="footer" id="footer"><div class="container"><div class="footer-main"><div class="footer-about"><a class="brand brand-footer" href="#top"><img alt="" height="56" src="assets/wakeel-mark.png" width="44"/><span class="brand-word"><strong>وكيل</strong><span class="brand-divider">|</span><b lang="en">WAKEEL</b></span></a><p>منصة رقمية تربط العملاء بمقدمي خدمات متابعة المعاملات والوثائق، وتسهّل مقارنة العروض ومتابعة الإنجاز.</p><span class="independent-label"><svg class="icon"><use href="#i-shield"></use></svg> منصة مستقلة وغير تابعة لأي جهة حكومية</span></div><div class="footer-column"><h3>روابط سريعة</h3><a href="#top">الرئيسية</a><a href="#how">كيف يعمل وكيل؟</a><a href="#services">الخدمات</a><a href="#agents">للوكلاء</a><a href="#faq">الأسئلة الشائعة</a></div><div class="footer-column"><h3>استكشف المنصة</h3><a href="#ai">المساعد الذكي</a><a href="#tracking">متابعة المعاملات</a><a href="#why">لماذا وكيل؟</a><a href="../Master-Client-Cycle/master-creat-request/creat-request.html">ابدأ الآن</a></div><div class="footer-column"><h3>المزيد</h3><p>التواصل وسياسة الخصوصية وشروط الاستخدام ستُضاف عند بناء صفحاتها.</p><span class="footer-tag"><svg class="icon"><use href="#i-pin"></use></svg> الأردن</span></div></div><div class="footer-bottom"><span>© 2026 وكيل — مشروع قيد التطوير</span><span>صُمم بعناية لتجربة أكثر وضوحًا وثقة</span><a href="#top">العودة للأعلى ↑</a></div></div></footer>
+</body>
+</html>
